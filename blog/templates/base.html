@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GrumpyF.uk</title>
+</head>
+<body>
+<h1>GrumpyF.uk{% block page_title %}{% endblock page_title %}</h1>
+<hr>
+<nav>
+    <ul>
+        <li><a href="{% url 'blog:index' %}">Home</a></li>
+        {% block nav_bar %}{% endblock nav_bar %}
+    </ul>
+</nav>
+<hr>
+{% block page_content %}{% endblock page_content %}
+</body>
+</html>
