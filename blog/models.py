@@ -9,6 +9,7 @@ class Post(models.Model):
     categories = models.ManyToManyField('Category', related_name='posts')
     tags = models.ManyToManyField('Tag', related_name='posts')
     author = models.ForeignKey('Author', related_name='posts', on_delete=models.SET_NULL, null=True)
+    slug = models.SlugField(max_length=36, unique=True)
 
     def __str__(self):
         return self.title
