@@ -1,35 +1,54 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.views import generic
 
 from .models import Post, Category, Tag
 
 
-def index(request):
-    context = {
-        'posts': Post.objects.all().order_by('-created'),
-        'categories': Category.objects.all(),
-    }
+class IndexView(generic.ListView):
+    template_name = 'blog/index.html'
+    context_object_name = 'posts'
 
-    return render(request, 'blog/index.html', context)
+    def get_queryset(self):
+        return Post.objects.order_by('-created')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
 
-def blog_category(request, slug):
-    category = Category.objects.get(slug=slug)
-    context = {
-        'category': category,
-        'categories': Category.objects.all(),
-        'posts': Post.objects.filter(categories=category).order_by('-created'),
-    }
-
-    return render(request, 'blog/category.html', context)
+        return context
 
 
-def blog_tag(request, slug):
-    tag = Tag.objects.get(slug=slug)
-    context = {
-        'tag': tag,
-        'categories': Category.objects.all(),
-        'posts': Post.objects.filter(tags=tag).order_by('-created'),
-    }
+class PostListByCategoryView(generic.ListView):
+    template_name = 'blog/list_view.html'
+    context_object_name = 'posts'
 
-    return render(request, 'blog/tag.html', context)
+    def get_queryset(self):
+        category = get_object_or_404(Category, slug=self.kwargs['slug'])
+
+        return Post.objects.filter(categories=category).order_by('-created')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['subset_type'] = 'Category'
+        context['subset_name'] = Category.objects.get(slug=self.kwargs['slug'])
+        context['categories'] = Category.objects.all()
+
+        return context
+
+
+class PostListByTagView(generic.ListView):
+    template_name = 'blog/list_view.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        tag = get_object_or_404(Tag, slug=self.kwargs['slug'])
+
+        return Post.objects.filter(tags=tag).order_by('-created')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['subset_type'] = 'Tag'
+        context['subset_name'] = Tag.objects.get(slug=self.kwargs['slug'])
+        context['categories'] = Category.objects.all()
+
+        return context
