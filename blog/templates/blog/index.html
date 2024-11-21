@@ -1,29 +1,5 @@
-{% extends "base.html" %}
+{% extends "blog/post_list.html" %}
 
 {% block page_title %}
     | Homepage
 {% endblock page_title %}
-
-{% block nav_bar %}
-    {% for category in categories %}
-        <li><a href="{% url 'blog:category' category.slug %}">{{ category }}</a></li>
-    {% endfor %}
-{% endblock nav_bar %}
-
-{% block page_content %}
-    {% block posts %}
-        {% for post in posts %}
-            <p>{{ post.title }}</p>
-            <p>
-                {{ post.created.date }} | Categories:
-                {% for category in post.categories.all %}
-                    <a href="{% url 'blog:category' category.slug %}">{{ category.name }}</a>
-                {% endfor %} | Tags:
-                {% for tag in post.tags.all %}
-                    <a href="{% url 'blog:tag' tag.slug %}">{{ tag.name }}</a>
-                {% endfor %}
-            </p>
-            <p>{{ post.body | slice:":400" }}...</p>
-        {% endfor %}
-    {% endblock posts %}
-{% endblock page_content %}

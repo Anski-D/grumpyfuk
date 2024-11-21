@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    | {{ subset_type }}: {{ subset_name }}
+{% endblock page_title %}
+
+{% block page_content %}
+    {% block posts %}
+        {% for post in posts %}
+            <p><a href="{% url 'blog:post' post.slug %}">{{ post.title }}</a></p>
+            <p>
+                {{ post.created.date }} | Categories:
+                {% for category in post.categories.all %}
+                    <a href="{% url 'blog:category' category.slug %}">{{ category.name }}</a>
+                {% endfor %} | Tags:
+                {% for tag in post.tags.all %}
+                    <a href="{% url 'blog:tag' tag.slug %}">{{ tag.name }}</a>
+                {% endfor %}
+            </p>
+            <p>{{ post.body | slice:":400" }}...</p>
+        {% endfor %}
+    {% endblock posts %}
+{% endblock page_content %}

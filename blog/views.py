@@ -19,7 +19,7 @@ class IndexView(generic.ListView):
 
 
 class PostListByCategoryView(generic.ListView):
-    template_name = 'blog/list_view.html'
+    template_name = 'blog/post_list.html'
     context_object_name = 'posts'
 
     def get_queryset(self):
@@ -37,7 +37,7 @@ class PostListByCategoryView(generic.ListView):
 
 
 class PostListByTagView(generic.ListView):
-    template_name = 'blog/list_view.html'
+    template_name = 'blog/post_list.html'
     context_object_name = 'posts'
 
     def get_queryset(self):
@@ -49,6 +49,16 @@ class PostListByTagView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['subset_type'] = 'Tag'
         context['subset_name'] = Tag.objects.get(slug=self.kwargs['slug'])
+        context['categories'] = Category.objects.all()
+
+        return context
+
+
+class PostDetailView(generic.DetailView):
+    model = Post
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
 
         return context
