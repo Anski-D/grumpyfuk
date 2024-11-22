@@ -1,7 +1,11 @@
 {% extends 'blog/base.html' %}
 
 {% block page_content %}
-    <h1>{{ post.title }}</h1>
-    <p>Published: {{ post.created.date }} | Written by: <a href="{% url 'blog:author' post.author.slug %}">{{ post.author }}</a></p>
-    <p>{{ post.body }}</p>
+    <article>
+        <hgroup>
+            <h2>{{ post.title }}</h2>
+            <p>Published: {{ post.created|date:'D, jS N Y' }} | Written by: <a href="{% url 'blog:author' post.author.slug %}">{{ post.author }}</a></p>
+        </hgroup>
+        <p>{{ post.body }}</p>
+    </article>
 {% endblock page_content %}

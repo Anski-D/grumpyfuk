@@ -7,9 +7,9 @@
 {% block page_content %}
     {% block posts %}
         {% for post in posts %}
-            <p><a href="{% url 'blog:post' post.slug %}">{{ post.title }}</a></p>
+            <h2><a href="{% url 'blog:post' post.slug %}">{{ post.title }}</a></h2>
             <p>
-                {{ post.created.date }} | Categories:
+                {{ post.created|date:'D, jS N Y' }} | Categories:
                 {% for category in post.categories.all %}
                     <a href="{% url 'blog:category' category.slug %}">{{ category.name }}</a>
                 {% endfor %} | Tags:
