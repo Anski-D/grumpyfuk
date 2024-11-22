@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +25,5 @@ urlpatterns = [
 # URLs from blog app
 urlpatterns += [
     path('blog/', include('blog.urls')),
+    path('', RedirectView.as_view(url='blog/', permanent=False)),
 ]

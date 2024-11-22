@@ -8,7 +8,11 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
 
 
-admin.site.register(Author)
+@admin.register(Author)
+class AuthorAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("first_name", "last_name")}
+
+
 admin.site.register(Category)
 admin.site.register(Tag)
 admin.site.register(Comment)
