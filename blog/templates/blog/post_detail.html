@@ -1,11 +1,15 @@
 {% extends 'blog/base.html' %}
 
+{% block window_title %}
+    | {{ post.title }}
+{% endblock window_title %}
+
 {% block page_content %}
     <article>
         <hgroup>
             <h2>{{ post.title }}</h2>
-            <p>Published: {{ post.created|date:'D, jS N Y' }} | Written by: <a href="{% url 'blog:author' post.author.slug %}">{{ post.author }}</a></p>
+            <p>Published: {{ post.created|date:'D, jS N Y' }} | Written by: <a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></p>
         </hgroup>
-        <p>{{ post.body }}</p>
+        {{ post.body|linebreaks }}
     </article>
 {% endblock page_content %}
