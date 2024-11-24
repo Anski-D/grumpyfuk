@@ -29,8 +29,7 @@ class PostListByCategoryView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['subset_type'] = 'Category'
-        context['subset_name'] = Category.objects.get(slug=self.kwargs['slug'])
+        context['list_title'] = f'Category: {Category.objects.get(slug=self.kwargs["slug"])}'
         context['categories'] = Category.objects.all()
 
         return context
@@ -47,8 +46,7 @@ class PostListByTagView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['subset_type'] = 'Tag'
-        context['subset_name'] = Tag.objects.get(slug=self.kwargs['slug'])
+        context['list_title'] = f'Tag: {Tag.objects.get(slug=self.kwargs["slug"])}'
         context['categories'] = Category.objects.all()
 
         return context
@@ -65,8 +63,7 @@ class PostListByAuthorView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['subset_type'] = 'Author'
-        context['subset_name'] = Author.objects.get(slug=self.kwargs['slug'])
+        context['list_title'] = f'Author: {Author.objects.get(slug=self.kwargs["slug"])}'
         context['categories'] = Category.objects.all()
 
         return context

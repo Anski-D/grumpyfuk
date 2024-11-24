@@ -29,8 +29,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-0^%wbr0$$1%7n*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['grumpyfuk.eu.pythonanywhere.com', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['https://grumpyfuk.eu.pythonanywhere.com']
+ALLOWED_HOSTS = ['www.grumpyf.uk', '127.0.0.1', 'localhost']
+CSRF_TRUSTED_ORIGINS = ['https://www.grumpyf.uk']
 
 
 # Application definition

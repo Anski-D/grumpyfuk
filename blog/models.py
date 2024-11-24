@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Post(models.Model):
@@ -14,6 +15,9 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('blog:post-detail', kwargs={'slug': self.slug})
+
 
 class Author(models.Model):
     first_name = models.CharField(max_length=36)
@@ -23,6 +27,9 @@ class Author(models.Model):
 
     def __str__(self):
         return self.display_name
+
+    def get_absolute_url(self):
+        return reverse('blog:author-post-list', kwargs={'slug': self.slug})
 
 
 class Category(models.Model):
@@ -35,6 +42,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('blog:category-post-list', kwargs={'slug': self.slug})
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=36)
@@ -42,6 +52,9 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('blog:tag-post-list', kwargs={'slug': self.slug})
 
 
 class Comment(models.Model):
