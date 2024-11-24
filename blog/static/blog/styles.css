@@ -64,6 +64,9 @@ a:hover {
 nav menu li a {
     color: black;
 }
+footer {
+    border-top: 16px solid #a5b68d;
+}
 footer p {
     margin: 0;
     text-align: center;
