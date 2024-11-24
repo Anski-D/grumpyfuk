@@ -1,0 +1,92 @@
+/* COLOR PALETTE
+https://colorhunt.co/palette/a5b68decdfccfcfaeeda8359
+#a5b68d sage
+#ecdfcc peach
+#fcfaee beige
+#da8359 orange
+*/
+
+html {
+    font-size: 1em;
+    font-family: Helvetica, sans-serif;
+}
+body {
+    background: #a5b68d;
+    margin: 0;
+    padding: 0;
+}
+#container {
+    background: #fcfaee;
+}
+@media (min-width: 800px) {
+    #container {
+        width: 800px;
+	    margin: 0 auto;
+    }
+}
+@media (min-width: 1067px) {
+    #container {
+        width: 75%;
+    }
+}
+#page-header, footer {
+    background: #ecdfcc;
+}
+h1 {
+    font-size: 4em;
+    margin: 0;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+nav menu {
+    background: #da8359;
+    list-style: none;
+    border-top: 16px solid #a5b68d;
+	border-bottom: 16px solid #a5b68d;
+    margin: 0;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+    font-weight: bold;
+}
+nav menu li {
+    display: inline;
+    line-height: 2em;
+    text-transform: uppercase;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: #da8359;
+}
+a:hover {
+    text-decoration: underline;
+}
+nav menu li a {
+    color: black;
+}
+footer p {
+    margin: 0;
+    text-align: center;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    font-weight: bold;
+}
+main {
+    font-size: 1rem;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+h2 {
+    font-size: 2em;
+}
+h3 {
+    font-size: 1.5em;
+}
+article hgroup p {
+    font-size: 0.8em;
+    font-weight: bold;
+}
+#page-header, nav menu, main, footer {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
