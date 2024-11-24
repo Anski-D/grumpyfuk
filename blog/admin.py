@@ -13,6 +13,14 @@ class AuthorAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("first_name", "last_name")}
 
 
-admin.site.register(Category)
-admin.site.register(Tag)
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("name",)}
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("name",)}
+
+
 admin.site.register(Comment)
