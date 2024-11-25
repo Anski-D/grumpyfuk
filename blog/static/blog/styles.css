@@ -6,6 +6,7 @@ https://colorhunt.co/palette/a5b68decdfccfcfaeeda8359
 #da8359 orange
 */
 
+/* TOP LEVEL */
 html {
     font-size: 1em;
     font-family: Helvetica, sans-serif;
@@ -15,35 +16,35 @@ body {
     margin: 0;
     padding: 0;
 }
-#container {
-    background: #fcfaee;
+@media (max-width: 1080px) {
+    html {
+        font-size: 150%;
+    }
 }
-@media (min-width: 800px) {
+
+/* MAIN PAGE STRUCTURE */
+@media (min-width: 1080px) {
     #container {
-        width: 800px;
+        width: 1080px;
 	    margin: 0 auto;
     }
 }
-@media (min-width: 1067px) {
+@media (min-width: 1440px) {
     #container {
         width: 75%;
     }
 }
+nav, main, footer {
+    margin-top: 16px;
+}
 #page-header, footer {
     background: #ecdfcc;
 }
-h1 {
-    font-size: 4em;
-    margin: 0;
-    padding-top: 0.25em;
-    padding-bottom: 0.25em;
-}
+
+/* MAIN NAVIGATION MENU */
 nav menu {
     background: #da8359;
     list-style: none;
-    border-top: 16px solid #a5b68d;
-	border-bottom: 16px solid #a5b68d;
-    margin: 0;
     padding-top: 0.25em;
     padding-bottom: 0.25em;
     font-weight: bold;
@@ -54,18 +55,24 @@ nav menu li {
     text-transform: uppercase;
     margin: 0;
 }
-a {
-    text-decoration: none;
-    color: #da8359;
-}
-a:hover {
-    text-decoration: underline;
-}
 nav menu li a {
     color: black;
 }
-footer {
-    border-top: 16px solid #a5b68d;
+
+/* MAIN CONTENT STYLING */
+#page-header, nav menu, main, footer {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+main {
+    font-size: 1rem;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background: #fcfaee;
+}
+article hgroup p {
+    font-size: 0.8em;
+    font-weight: bold;
 }
 footer p {
     margin: 0;
@@ -74,22 +81,26 @@ footer p {
     padding-bottom: 0.5em;
     font-weight: bold;
 }
-main {
-    font-size: 1rem;
-    padding-top: 1em;
-    padding-bottom: 1em;
+
+/* HYPERLINKS */
+a {
+    text-decoration: none;
+    color: #da8359;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* HEADINGS */
+h1 {
+    font-size: 4em;
+    margin: 0;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
 }
 h2 {
     font-size: 2em;
 }
 h3 {
     font-size: 1.5em;
-}
-article hgroup p {
-    font-size: 0.8em;
-    font-weight: bold;
-}
-#page-header, nav menu, main, footer {
-    padding-left: 2rem;
-    padding-right: 2rem;
 }
