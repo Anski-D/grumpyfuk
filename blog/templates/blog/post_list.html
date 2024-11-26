@@ -24,7 +24,7 @@
                         {% endfor %}
                     </p>
                 </hgroup>
-                <p>{{ post.body | slice:":400" }}...</p>
+                <p>{{ post.body | slice:":100" }}... <a href="{{ post.get_absolute_url }}">[click for more]</a></p>
             </article>
         {% endfor %}
     {% endblock posts %}
