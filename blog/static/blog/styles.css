@@ -8,28 +8,28 @@ https://colorhunt.co/palette/a5b68decdfccfcfaeeda8359
 
 /* TOP LEVEL */
 html {
-    font-size: 1em;
+    font-size: 1.2em;
     font-family: Helvetica, sans-serif;
+}
+@media (max-width: 1080px) {
+    html {
+        font-size: 1em;
+    }
 }
 body {
     background: #a5b68d;
     margin: 0;
     padding: 0;
 }
-@media (max-width: 1080px) {
-    html {
-        font-size: 150%;
-    }
-}
 
 /* MAIN PAGE STRUCTURE */
-@media (min-width: 1080px) {
+@media (min-width: 800px) {
     #container {
-        width: 1080px;
+        width: 800px;
 	    margin: 0 auto;
     }
 }
-@media (min-width: 1440px) {
+@media (min-width: 1067px) {
     #container {
         width: 75%;
     }
@@ -48,12 +48,12 @@ nav menu {
     padding-top: 0.25em;
     padding-bottom: 0.25em;
     font-weight: bold;
+    margin: 0;
 }
 nav menu li {
     display: inline;
     line-height: 2em;
     text-transform: uppercase;
-    margin: 0;
 }
 nav menu li a {
     color: black;
@@ -93,14 +93,14 @@ a:hover {
 
 /* HEADINGS */
 h1 {
-    font-size: 4em;
+    font-size: 4rem;
     margin: 0;
     padding-top: 0.25em;
     padding-bottom: 0.25em;
 }
 h2 {
-    font-size: 2em;
+    font-size: 2rem;
 }
 h3 {
-    font-size: 1.5em;
+    font-size: 1.5rem;
 }
