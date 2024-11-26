@@ -8,7 +8,7 @@
     <article>
         <hgroup>
             <h2>{{ post.title }}</h2>
-            <p>Published: {{ post.created|date:'D, jS N Y' }} | Written by: <a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></p>
+            <p>Published: {{ post.publish_date|date:'D, jS N Y' }} | Written by: <a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></p>
         </hgroup>
         {{ post.body|linebreaks }}
     </article>

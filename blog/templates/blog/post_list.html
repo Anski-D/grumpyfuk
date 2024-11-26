@@ -15,7 +15,7 @@
                 <hgroup>
                     <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
                     <p>
-                        {{ post.created|date:'D, jS N Y' }} | Categories:
+                        {{ post.publish_date|date:'D, jS N Y' }} | Categories:
                         {% for category in post.categories.all %}
                             <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
                         {% endfor %} | Tags:

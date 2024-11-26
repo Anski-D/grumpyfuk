@@ -9,7 +9,7 @@ class IndexView(generic.ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        return Post.objects.filter(published=True).order_by('-created')
+        return Post.objects.filter(published=True).order_by('-publish_date')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -25,7 +25,7 @@ class PostListByCategoryView(generic.ListView):
     def get_queryset(self):
         category = get_object_or_404(Category, slug=self.kwargs['slug'])
 
-        return Post.objects.filter(categories=category).filter(published=True).order_by('-created')
+        return Post.objects.filter(categories=category).filter(published=True).order_by('-publish_date')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -42,7 +42,7 @@ class PostListByTagView(generic.ListView):
     def get_queryset(self):
         tag = get_object_or_404(Tag, slug=self.kwargs['slug'])
 
-        return Post.objects.filter(tags=tag).filter(published=True).order_by('-created')
+        return Post.objects.filter(tags=tag).filter(published=True).order_by('-publish_date')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -59,7 +59,7 @@ class PostListByAuthorView(generic.ListView):
     def get_queryset(self):
         author = get_object_or_404(Author, slug=self.kwargs['slug'])
 
-        return Post.objects.filter(author=author).filter(published=True).order_by('-created')
+        return Post.objects.filter(author=author).filter(published=True).order_by('-publish_date')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

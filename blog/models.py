@@ -1,11 +1,12 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
     body = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
+    publish_date = models.DateTimeField(default=timezone.now)
     last_updated = models.DateTimeField(auto_now=True)
     categories = models.ManyToManyField('Category', related_name='posts')
     tags = models.ManyToManyField('Tag', related_name='posts')
