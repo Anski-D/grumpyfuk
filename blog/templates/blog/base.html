@@ -9,9 +9,11 @@
 </head>
 <body>
     <div id="container">
-        <hgroup id="page-header">
-            <h1>GrumpyF.uk</h1>
-        </hgroup>
+        <a href="{% url 'blog:index' %}">
+            <hgroup id="page-header">
+                <h1>GrumpyF.uk</h1>
+            </hgroup>
+        </a>
 
         <nav>
             <menu>
@@ -27,7 +29,7 @@
             {% block page_content %}{% endblock page_content %}
         </main>
 
-        <footer><p>Copyright &copy; Dave Anski 2024</p></footer>
+        <footer id="page-footer"><p>Copyright &copy; Dave Anski 2024</p></footer>
     </div>
 </body>
 </html>
