@@ -41,6 +41,14 @@ nav, main, #page-footer {
     background: #ecdfcc;
 }
 
+/* PAGE TITLE */
+h1 a {
+    color: black;
+}
+h1 a:hover {
+    text-decoration: none;
+}
+
 /* MAIN NAVIGATION MENU */
 nav menu {
     background: #da8359;
