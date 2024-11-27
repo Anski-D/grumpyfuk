@@ -1,79 +1,74 @@
+from abc import ABC
+
 from django.shortcuts import get_object_or_404
 from django.views import generic
 
 from .models import Post, Category, Tag, Author
 
 
+def _get_sorted_published_posts():
+    return Post.objects.filter(published=True).order_by('-publish_date')
+
+
 class IndexView(generic.ListView):
     template_name = 'blog/index.html'
     context_object_name = 'posts'
+    categories = Category.objects.filter(posts__published=True).distinct()
 
     def get_queryset(self):
-        return Post.objects.filter(published=True).order_by('-publish_date')
+        return _get_sorted_published_posts()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.filter(posts__published=True).distinct()
+        context['categories'] = self.categories
 
         return context
 
 
-class PostListByCategoryView(generic.ListView):
+class PostListBySubsetView(ABC, IndexView):
     template_name = 'blog/post_list.html'
-    context_object_name = 'posts'
-
-    def get_queryset(self):
-        category = get_object_or_404(Category, slug=self.kwargs['slug'])
-
-        return Post.objects.filter(categories=category).filter(published=True).order_by('-publish_date')
+    title = ''
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['list_title'] = f'Category: {Category.objects.get(slug=self.kwargs["slug"])}'
-        context['categories'] = Category.objects.all()
+        context['list_title'] = f'{self.title}: {self.model.objects.get(slug=self.kwargs["slug"])}'
 
         return context
 
+    def _get_subset(self):
+        return get_object_or_404(self.model, slug=self.kwargs['slug'])
 
-class PostListByTagView(generic.ListView):
-    template_name = 'blog/post_list.html'
-    context_object_name = 'posts'
+
+class PostListByCategoryView(PostListBySubsetView):
+    model = Category
+    title = 'Category'
 
     def get_queryset(self):
-        tag = get_object_or_404(Tag, slug=self.kwargs['slug'])
-
-        return Post.objects.filter(tags=tag).filter(published=True).order_by('-publish_date')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['list_title'] = f'Tag: {Tag.objects.get(slug=self.kwargs["slug"])}'
-        context['categories'] = Category.objects.all()
-
-        return context
+        return super().get_queryset().filter(categories=self._get_subset())
 
 
-class PostListByAuthorView(generic.ListView):
-    template_name = 'blog/post_list.html'
-    context_object_name = 'posts'
+class PostListByTagView(PostListBySubsetView):
+    model = Tag
+    title = 'Tag'
 
     def get_queryset(self):
-        author = get_object_or_404(Author, slug=self.kwargs['slug'])
+        return super().get_queryset().filter(tags=self._get_subset())
 
-        return Post.objects.filter(author=author).filter(published=True).order_by('-publish_date')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['list_title'] = f'Author: {Author.objects.get(slug=self.kwargs["slug"])}'
-        context['categories'] = Category.objects.all()
+class PostListByAuthorView(PostListBySubsetView):
+    model = Author
+    title = 'Author'
 
-        return context
+    def get_queryset(self):
+        return super().get_queryset().filter(author=self._get_subset())
 
 
 class PostDetailView(generic.DetailView):
     model = Post
+    categories = Category.objects.filter(posts__published=True).distinct()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
+        context['categories'] = self.categories
 
         return context
