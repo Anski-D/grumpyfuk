@@ -1,10 +1,14 @@
 /* COLOR PALETTE
 https://colorhunt.co/palette/a5b68decdfccfcfaeeda8359
-#a5b68d sage
-#ecdfcc peach
-#fcfaee beige
-#da8359 orange
 */
+
+/* DEFINE CUSTOM */
+:root {
+    --color-sage: #a5b68d;
+    --color-peach: #ecdfcc;
+    --color-beige: #fcfaee;
+    --color-orange: #da8359;
+}
 
 /* TOP LEVEL */
 html {
@@ -17,7 +21,7 @@ html {
     }
 }
 body {
-    background: #a5b68d;
+    background: var(--color-sage);
     margin: 0;
     padding: 0;
 }
@@ -38,7 +42,7 @@ nav, main, #page-footer {
     margin-top: 16px;
 }
 #page-header, #page-footer {
-    background: #ecdfcc;
+    background: var(--color-peach);
 }
 
 /* PAGE TITLE */
@@ -51,7 +55,7 @@ h1 a:hover {
 
 /* MAIN NAVIGATION MENU */
 nav menu {
-    background: #da8359;
+    background: var(--color-orange);
     list-style: none;
     padding-top: 0.25em;
     padding-bottom: 0.25em;
@@ -76,7 +80,7 @@ main {
     font-size: 1rem;
     padding-top: 1em;
     padding-bottom: 1em;
-    background: #fcfaee;
+    background: var(--color-beige);
 }
 article hgroup p, article footer p {
     font-size: 0.8em;
@@ -93,7 +97,7 @@ article hgroup p, article footer p {
 /* HYPERLINKS */
 a {
     text-decoration: none;
-    color: #da8359;
+    color: var(--color-orange);
 }
 a:hover {
     text-decoration: underline;
