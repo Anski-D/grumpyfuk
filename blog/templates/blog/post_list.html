@@ -16,7 +16,8 @@
                     <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
                     <p>Published {{ post.publish_date|date:'l, jS F Y' }} by <a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></p>
                 </hgroup>
-                <p>{{ post.body | slice:":100" }}...<a href="{{ post.get_absolute_url }}">[read more]</a></p>
+                {% load blog_extras %}
+                <p>{{ post.body | render_markdown_no_paras | slice:":100" }}...<a href="{{ post.get_absolute_url }}">[read more]</a></p>
             </article>
         {% endfor %}
     {% endblock posts %}
