@@ -9,7 +9,7 @@
         <hgroup>
             <h2>{{ post.title }}</h2>
             <p>Published {{ post.publish_date|date:'l, jS F Y' }} by <a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></p>
-            <p>Categories:{% for category in post.categories.all %} <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>{% endfor %}</p>
+            <p>Categories:{% for category in post.categories.all %} <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>{% if not forloop.last %},{% endif %}{% endfor %}</p>
         </hgroup>
         {% load blog_extras %}
         {{ post.body | render_markdown }}
