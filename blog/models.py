@@ -7,9 +7,11 @@ _SLUG_LENGTH = 36
 
 
 class Post(models.Model):
+    _summary_length = 500
+
     title = models.CharField(max_length=100)
     body = models.TextField()
-    summary = models.TextField(max_length=500, blank=True)
+    summary = models.TextField(max_length=_summary_length, blank=True)
     publish_date = models.DateTimeField(default=timezone.now)
     last_updated = models.DateTimeField(auto_now=True)
     categories = models.ManyToManyField('Category', related_name='posts')
@@ -31,7 +33,7 @@ class Post(models.Model):
                 self.slug = self.slug[:-1]
 
         if not self.summary:
-            self.summary = self.body[:100]
+            self.summary = self.body[:self._summary_length]
 
         super().save(**kwargs)
 

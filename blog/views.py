@@ -2,18 +2,19 @@ from abc import ABC
 
 from django.shortcuts import get_object_or_404
 from django.views import generic
+from django.utils import timezone
 
 from .models import Post, Category, Tag, Author
 
 
 def _get_sorted_published_posts():
-    return Post.objects.filter(published=True).order_by('-publish_date')
+    return Post.objects.filter(published=True).filter(publish_date__lte=timezone.now()).order_by('-publish_date')
 
 
 class IndexView(generic.ListView):
     template_name = 'blog/index.html'
     context_object_name = 'posts'
-    categories = Category.objects.filter(posts__published=True).distinct()
+    categories = Category.objects.filter(posts__published=True).filter(posts__publish_date__lte=timezone.now()).distinct()
 
     def get_queryset(self):
         return _get_sorted_published_posts()
@@ -65,7 +66,7 @@ class PostListByAuthorView(PostListBySubsetView):
 
 class PostDetailView(generic.DetailView):
     model = Post
-    categories = Category.objects.filter(posts__published=True).distinct()
+    categories = Category.objects.filter(posts__published=True).filter(posts__publish_date__lte=timezone.now()).distinct()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
