@@ -9,6 +9,7 @@ _SLUG_LENGTH = 36
 class Post(models.Model):
     title = models.CharField(max_length=100)
     body = models.TextField()
+    summary = models.TextField(max_length=500, blank=True)
     publish_date = models.DateTimeField(default=timezone.now)
     last_updated = models.DateTimeField(auto_now=True)
     categories = models.ManyToManyField('Category', related_name='posts')
@@ -28,6 +29,9 @@ class Post(models.Model):
             self.slug = slugify(self.title)[:_SLUG_LENGTH]
             if self.slug.endswith('-'):
                 self.slug = self.slug[:-1]
+
+        if not self.summary:
+            self.summary = self.body[:100]
 
         super().save(**kwargs)
 
