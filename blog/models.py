@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
 
-_SLUG_LENGTH = 36
+_SLUG_LENGTH = 64
 
 
 class Post(models.Model):
