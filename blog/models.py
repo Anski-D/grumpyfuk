@@ -1,6 +1,9 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.text import slugify
+
+_SLUG_LENGTH = 36
 
 
 class Post(models.Model):
@@ -11,7 +14,7 @@ class Post(models.Model):
     categories = models.ManyToManyField('Category', related_name='posts')
     tags = models.ManyToManyField('Tag', related_name='posts')
     author = models.ForeignKey('Author', related_name='posts', on_delete=models.SET_NULL, null=True)
-    slug = models.SlugField(max_length=36, unique=True)
+    slug = models.SlugField(max_length=_SLUG_LENGTH, unique=True, blank=True)
     published = models.BooleanField(default=False)
 
     def __str__(self):
@@ -20,12 +23,20 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('blog:post-detail', kwargs={'slug': self.slug})
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)[:_SLUG_LENGTH]
+            if self.slug.endswith('-'):
+                self.slug = self.slug[:-1]
+
+        super().save(**kwargs)
+
 
 class Author(models.Model):
     first_name = models.CharField(max_length=36)
     last_name = models.CharField(max_length=36)
     display_name = models.CharField(max_length=36)
-    slug = models.SlugField(max_length=36, unique=True)
+    slug = models.SlugField(max_length=_SLUG_LENGTH, unique=True)
 
     def __str__(self):
         return self.display_name
@@ -36,7 +47,7 @@ class Author(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=36)
-    slug = models.SlugField(max_length=36, unique=True)
+    slug = models.SlugField(max_length=_SLUG_LENGTH, unique=True)
 
     class Meta:
         verbose_name_plural = "categories"
@@ -50,7 +61,10 @@ class Category(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=36)
-    slug = models.SlugField(max_length=36, unique=True)
+    slug = models.SlugField(max_length=_SLUG_LENGTH, unique=True)
+
+    class Meta:
+        ordering = ('name',)
 
     def __str__(self):
         return self.name
@@ -64,7 +78,7 @@ class Comment(models.Model):
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=36, unique=True)
+    slug = models.SlugField(max_length=_SLUG_LENGTH, unique=True)
 
     def __str__(self):
         return f'{self.author} on {self.post}'
