@@ -12,11 +12,3 @@ def render_markdown(value):
     md = markdown.Markdown(extensions=['fenced_code'])
 
     return mark_safe(md.convert(value))
-
-
-@register.filter
-@stringfilter
-def render_markdown_no_paras(value):
-    md = markdown.Markdown(extensions=['fenced_code'])
-
-    return mark_safe(md.convert(value).replace('<p>', ' ').replace('</p>', ''))
