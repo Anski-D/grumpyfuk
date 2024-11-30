@@ -17,6 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
+from django.utils import timezone
+from django.contrib.sitemaps.views import sitemap
+from django.contrib.sitemaps import GenericSitemap
+
+from blog.models import Post
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +31,18 @@ urlpatterns = [
 urlpatterns += [
     path('blog/', include('blog.urls')),
     path('', RedirectView.as_view(url='blog/', permanent=False)),
+]
+
+# # URLs for sitemaps
+info_dict = {
+    'queryset': Post.objects.filter(published=True).filter(publish_date__lte=timezone.now()).order_by('-publish_date'),
+    'date_field': 'last_updated',
+}
+urlpatterns += [
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": {"blog": GenericSitemap(info_dict)}},
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
 ]
