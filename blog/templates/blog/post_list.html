@@ -14,7 +14,7 @@
             <article>
                 <hgroup>
                     <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
-                    <p>Published {{ post.publish_date|date:'l, jS F Y' }} by <a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></p>
+                    <p>Published {{ post.publish_date | date:'l, jS F Y' }} by <a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></p>
                 </hgroup>
                 {% load blog_extras %}
                 <p>{{ post.summary | slice:100 }}...<a href="{{ post.get_absolute_url }}">[read more]</a></p>
