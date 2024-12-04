@@ -10,6 +10,7 @@
 
 {% block page_content %}
     {% block posts %}
+        <div id="post-previews">
         {% for post in posts %}
             <article>
                 <hgroup>
@@ -19,5 +20,6 @@
                 <p>{{ post.summary | slice:200 }}...<a href="{{ post.get_absolute_url }}">[read more]</a></p>
             </article>
         {% endfor %}
+        </div>
     {% endblock posts %}
 {% endblock page_content %}
