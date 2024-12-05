@@ -43,7 +43,7 @@ nav, main, #page-footer {
     margin-top: 16px;
 }
 #page-header, #page-footer {
-    background: var(--color-peach);
+    background: var(--color-beige);
 }
 
 /* PAGE TITLE */
@@ -81,27 +81,34 @@ main {
     font-size: 1rem;
     padding-top: 1em;
     padding-bottom: 1em;
-    background: var(--color-beige);
+    background: var(--color-peach);
 }
 #post-previews {
-    --col-gap: 2em;
+    --previews-gap: 1em;
     display: flex;
     flex-wrap: wrap;
-    column-gap: var(--col-gap);
+    gap: var(--previews-gap);
 }
 #post-previews article {
     --num-posts: 3;
-    width: calc(100%/var(--num-posts) - (var(--num-posts) - 1)/var(--num-posts)*var(--col-gap));
+    width: calc(100%/var(--num-posts) - (var(--num-posts) - 1)/var(--num-posts)*var(--previews-gap));
+    background: var(--color-beige);
+    padding-left: 1em;
+    padding-right: 1em;
+    box-sizing: border-box;
 }
 #post-previews article:first-child {
-    width: calc(200%/var(--num-posts) - (var(--num-posts) - 1)/var(--num-posts)*var(--col-gap)/2)
+    width: calc(2*100%/var(--num-posts) - (var(--num-posts) - 1)/var(--num-posts)*var(--previews-gap)/2)
+}
+#post-previews article:nth-child(2) {
+    flex: 1 0 auto;
+}
+#post-previews article:hover {
+    outline: 0.5em solid var(--color-sage);
 }
 @media (max-width: 800px) {
-    #post-previews {
-        display: block;
-    }
     #post-previews article, #post-previews article:first-child {
-        width: 100%;
+        --num-posts: 1;
     }
 }
 article hgroup p, article footer p {
@@ -139,6 +146,10 @@ h1 {
 }
 h2 {
     font-size: 2rem;
+    background: var(--color-beige);
+    width: fit-content;
+    padding: 0.25em 1rem;
+    margin: 0 0 1rem 0;
 }
 h3 {
     font-size: 1.5rem;
