@@ -6,14 +6,18 @@
 {% endblock window_title %}
 
 {% block page_content %}
-    <article>
+    <article id="post">
         <hgroup>
             <h2>{{ post.title }}</h2>
-            <p>Published {{ post.publish_date | date:'l, jS F Y' }} by <a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></p>
-            <p>Categories:{% for category in post.categories.all %} <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>{% if not forloop.last %},{% endif %}{% endfor %}</p>
+            <div class="post-part">
+                <p>Published {{ post.publish_date | date:'l, jS F Y' }} by <a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></p>
+                <p>Categories:{% for category in post.categories.all %} <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>{% if not forloop.last %},{% endif %}{% endfor %}</p>
+            </div>
         </hgroup>
-        {{ post.body | render_markdown }}
-        <footer>
+        <div id="content" class="post-part">
+            {{ post.body | render_markdown }}
+        </div>
+        <footer class="post-part">
             {% if last_updated %}
                 <p id="last-updated">Last updated {{ last_updated | date:'l, jS F Y' }}</p>
             {% endif %}

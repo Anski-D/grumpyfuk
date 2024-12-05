@@ -79,8 +79,7 @@ nav menu li a {
 }
 main {
     font-size: 1rem;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding: 2rem;
     background: var(--color-peach);
 }
 #post-previews {
@@ -110,6 +109,15 @@ main {
     #post-previews article, #post-previews article:first-child {
         --num-posts: 1;
     }
+}
+#post {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.post-part {
+    background: var(--color-beige);
+    padding: 0.25em 1rem;
 }
 article hgroup p, article footer p {
     font-size: 0.8em;
@@ -146,10 +154,9 @@ h1 {
 }
 h2 {
     font-size: 2rem;
-    background: var(--color-beige);
-    width: fit-content;
-    padding: 0.25em 1rem;
     margin: 0 0 1rem 0;
+    background: var(--color-beige);
+    padding: 0.5em 1rem;
 }
 h3 {
     font-size: 1.5rem;
