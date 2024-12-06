@@ -40,7 +40,7 @@ body {
     }
 }
 nav, main, #page-footer {
-    margin-top: 16px;
+    margin-top: 1em;
 }
 #page-header, #page-footer {
     background: var(--color-beige);
