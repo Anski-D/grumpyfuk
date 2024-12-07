@@ -75,4 +75,6 @@ class PostDetailView(generic.DetailView):
         if post.last_updated.date() > post.publish_date.date():
             context['last_updated'] = post.last_updated
 
+        context['absolute_uri'] = self.request.build_absolute_uri(post.get_absolute_url())
+
         return context
