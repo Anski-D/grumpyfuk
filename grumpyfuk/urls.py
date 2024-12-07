@@ -33,7 +33,7 @@ urlpatterns += [
     path('', RedirectView.as_view(url='blog/', permanent=False)),
 ]
 
-# # URLs for sitemaps
+# URLs for sitemaps
 info_dict = {
     'queryset': Post.objects.filter(published=True).filter(publish_date__lte=timezone.now()).order_by('-publish_date'),
     'date_field': 'last_updated',
