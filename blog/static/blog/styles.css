@@ -15,9 +15,7 @@ https://colorhunt.co/palette/a5b68decdfccfcfaeeda8359
 html {
     font-size: 1.2em;
     font-family: Helvetica, sans-serif;
-}
-@media (max-width: 1067px) {
-    html {
+    @media (max-width: 1067px) {
         font-size: 1em;
     }
 }
@@ -28,14 +26,12 @@ body {
 }
 
 /* MAIN PAGE STRUCTURE */
-@media (min-width: 800px) {
-    #container {
+#container {
+    margin: 0 auto;
+    @media (min-width: 800px) {
         width: var(--width-small);
-	    margin: 0 auto;
     }
-}
-@media (min-width: calc(800px/0.75)) {
-    #container {
+    @media (min-width: calc(800px/0.75)) {
         width: 75%;
     }
 }
@@ -81,6 +77,9 @@ main {
     font-size: 1rem;
     padding: 2rem;
     background: var(--color-peach);
+    @media (max-width: 800px) {
+        padding: 1rem;
+    }
 }
 #post-previews {
     --previews-gap: 1em;
