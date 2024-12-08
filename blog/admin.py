@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db.models import Count
 
-from .models import Post, Author, Category, Tag, Comment
+from .models import Post, Author, Category, Tag
 
 
 class CommonAdmin(admin.ModelAdmin):
@@ -39,6 +39,3 @@ class CategoryAdmin(CommonAdmin):
 class TagAdmin(CommonAdmin):
     list_display = ('name', 'count_posts')
     prepopulated_fields = {"slug": ("name",)}
-
-
-admin.site.register(Comment)
