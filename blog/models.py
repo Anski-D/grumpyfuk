@@ -12,6 +12,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     body = models.TextField()
     summary = models.TextField(max_length=_summary_length, blank=True)
+    images = models.ManyToManyField('Image', related_name='posts')
     publish_date = models.DateTimeField(default=timezone.now)
     last_updated = models.DateTimeField(auto_now=True)
     categories = models.ManyToManyField('Category', related_name='posts')
@@ -80,3 +81,16 @@ class Tag(models.Model):
 
     def get_absolute_url(self):
         return reverse('blog:tag-post-list', kwargs={'slug': self.slug})
+
+
+class Image(models.Model):
+    title = models.CharField(max_length=100)
+    alt_text = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=_SLUG_LENGTH, unique=True)
+    image = models.ImageField(upload_to='images/')
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog:image-detail', kwargs={'slug': self.slug})
