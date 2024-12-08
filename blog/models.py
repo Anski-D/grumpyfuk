@@ -20,6 +20,9 @@ class Post(models.Model):
     slug = models.SlugField(max_length=_SLUG_LENGTH, unique=True, blank=True)
     published = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ['-publish_date']
+
     def __str__(self):
         return self.title
 
