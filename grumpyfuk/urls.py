@@ -20,6 +20,8 @@ from django.views.generic import RedirectView
 from django.utils import timezone
 from django.contrib.sitemaps.views import sitemap
 from django.contrib.sitemaps import GenericSitemap
+from django.conf import settings
+from django.conf.urls.static import static
 
 from blog.models import Post
 
@@ -32,6 +34,9 @@ urlpatterns += [
     path('blog/', include('blog.urls')),
     path('', RedirectView.as_view(url='blog/', permanent=True)),
 ]
+
+# Media URLs
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # URLs for sitemaps
 info_dict = {

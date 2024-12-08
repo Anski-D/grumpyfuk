@@ -132,6 +132,10 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # The URL to use when referring to static files (where they will be served from)
 STATIC_URL = 'static/'
 
+# Media files
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Static file serving.
 # https://whitenoise.readthedocs.io/en/stable/django.html#add-compression-and-caching-support
 STORAGES = {
