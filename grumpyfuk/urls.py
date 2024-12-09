@@ -30,7 +30,7 @@ urlpatterns = [
 # URLs from blog app
 urlpatterns += [
     path('blog/', include('blog.urls')),
-    path('', RedirectView.as_view(url='blog/', permanent=False)),
+    path('', RedirectView.as_view(url='blog/', permanent=True)),
 ]
 
 # URLs for sitemaps
