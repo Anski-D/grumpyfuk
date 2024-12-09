@@ -22,6 +22,7 @@ class IndexView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = self.categories
+        context['absolute_uri'] = self.request.build_absolute_uri()
 
         return context
 
