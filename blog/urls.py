@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.urls import path
 
 from . import views
@@ -9,4 +10,5 @@ urlpatterns = [
     path('tag/<slug:slug>/', views.PostListByTagView.as_view(), name='tag-post-list'),
     path('post/<slug:slug>/', views.PostDetailView.as_view(), name='post-detail'),
     path('author/<slug:slug>/', views.PostListByAuthorView.as_view(), name='author-post-list'),
+    path('image/<slug:slug>/', views.ImageFileRedirectView.as_view(), name='image-file'),
 ]

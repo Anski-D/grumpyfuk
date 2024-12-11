@@ -1,10 +1,12 @@
 from abc import ABC
+import os
 
 from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.utils import timezone
+from django.views.generic.base import RedirectView
 
-from .models import Post, Category, Tag, Author
+from .models import Post, Category, Tag, Author, Image
 
 
 def _get_sorted_published_posts():
@@ -79,3 +81,14 @@ class PostDetailView(generic.DetailView):
         context['absolute_uri'] = self.request.build_absolute_uri(post.get_absolute_url())
 
         return context
+
+
+class ImageFileRedirectView(RedirectView):
+    model = Image
+    permanent = True
+    pattern_name = 'image-file'
+
+    def get_redirect_url(self, *args, **kwargs):
+        image = get_object_or_404(self.model, slug=kwargs['slug'])
+
+        return image.image.url
