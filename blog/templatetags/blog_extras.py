@@ -11,6 +11,13 @@ register = template.Library()
 @register.filter
 @stringfilter
 def render_markdown(value):
-    md = markdown.Markdown(extensions=['fenced_code', SlugFieldExtensions(), ImageFieldExtensions()])
+    md = markdown.Markdown(
+        extensions=[
+            'fenced_code',
+            'attr_list',
+            SlugFieldExtensions(),
+            ImageFieldExtensions(),
+        ]
+    )
 
     return mark_safe(md.convert(value))
