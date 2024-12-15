@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -94,3 +96,7 @@ class Image(models.Model):
 
     def get_absolute_url(self):
         return reverse('blog:image-detail', kwargs={'slug': self.slug})
+
+    def delete(self, *args, **kwargs):
+        Path(self.image.path).unlink()
+        super().delete(*args, **kwargs)
