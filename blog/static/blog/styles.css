@@ -160,3 +160,11 @@ h2 {
 h3 {
     font-size: 1.5rem;
 }
+
+/* POST IMAGES */
+#post img, #post img + em {
+    display: block;
+    margin: auto;
+    font-size: 0.8em;
+    text-align: center;
+}
