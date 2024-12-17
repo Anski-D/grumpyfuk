@@ -140,6 +140,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://whitenoise.readthedocs.io/en/stable/django.html#add-compression-and-caching-support
 if not DEBUG:
     STORAGES = {
+        'default': {
+            'BACKEND': 'django.core.files.storage.FileSystemStorage',
+        },
         'staticfiles': {
             'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
         },
