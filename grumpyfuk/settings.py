@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 
+from django.core.files.storage import storages
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -139,14 +140,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Static file serving.
 # https://whitenoise.readthedocs.io/en/stable/django.html#add-compression-and-caching-support
 if not DEBUG:
-    STORAGES = {
-        'default': {
-            'BACKEND': 'django.core.files.storage.FileSystemStorage',
-        },
-        'staticfiles': {
-            'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
-        },
-    }
+    STORAGES = storages.backends
+    STORAGES['staticfiles'] = {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
