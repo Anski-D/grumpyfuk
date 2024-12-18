@@ -8,6 +8,12 @@ from django.utils.text import slugify
 _SLUG_LENGTH = 64
 
 
+def _image_save_name(instance, filename):
+    suffix = Path(filename).suffix
+
+    return f'images/{instance.slug}-{timezone.now().strftime("%Y%m%d%H%M%S")}{suffix}'
+
+
 class Post(models.Model):
     _summary_length = 500
 
@@ -89,7 +95,7 @@ class Image(models.Model):
     title = models.CharField(max_length=100)
     alt_text = models.CharField(max_length=100)
     slug = models.SlugField(max_length=_SLUG_LENGTH, unique=True)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to=_image_save_name)
 
     def __str__(self):
         return self.title

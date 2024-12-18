@@ -1,5 +1,4 @@
 from abc import ABC
-import os
 
 from django.shortcuts import get_object_or_404
 from django.views import generic
