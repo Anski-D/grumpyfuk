@@ -177,3 +177,10 @@ code {
     color: var(--color-beige);
     font-size: 0.8em;
 }
+pre code {
+    max-width: 100%;
+    display: inline-block;
+    overflow: auto;
+    padding: 1em;
+    box-sizing: border-box;
+}
