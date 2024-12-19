@@ -68,7 +68,7 @@ nav menu li a {
     color: black;
 }
 
-/* MAIN CONTENT STYLING */
+/* MAIN CONTENT */
 #page-header, nav menu, main, #page-footer {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -167,4 +167,13 @@ h3 {
     margin: auto;
     font-size: 0.8em;
     text-align: center;
+    max-width: 100%;
+    height: auto;
+}
+
+/* CODE */
+code {
+    background: black;
+    color: var(--color-beige);
+    font-size: 0.8em;
 }
