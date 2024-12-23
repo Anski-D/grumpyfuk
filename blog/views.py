@@ -1,4 +1,5 @@
 from abc import ABC
+from urllib import request
 
 from django.shortcuts import get_object_or_404
 from django.views import generic
@@ -69,6 +70,12 @@ class PostListByAuthorView(PostListBySubsetView):
 class PostDetailView(generic.DetailView):
     model = Post
     categories = Category.objects.filter(posts__published=True).filter(posts__publish_date__lte=timezone.now()).distinct()
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return super().get_queryset()
+
+        return _get_sorted_published_posts()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
