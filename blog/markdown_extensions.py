@@ -1,5 +1,6 @@
 import markdown
 from django.urls import reverse
+from django.conf import settings
 from markdown.inlinepatterns import LinkInlineProcessor, LINK_RE, ImageInlineProcessor, IMAGE_LINK_RE
 
 from .models import InternalLink
@@ -26,6 +27,8 @@ class ImageFieldImageInlineProcessor(ImageInlineProcessor):
             _, app, name, slug = src.split(':')
             relative_url = reverse(f'{app}:{name}', args=[slug])
             src = relative_url
+            if not settings.DEBUG:
+                src = f'/cdn-cgi/image/fit=shrink-down,width=auto{src}'
 
         return src, title, index, handled
 
