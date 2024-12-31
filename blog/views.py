@@ -1,10 +1,8 @@
 from abc import ABC
-from urllib import request
 
 from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.utils import timezone
-from django.views.generic.base import RedirectView
 
 from .models import Post, Category, Tag, Author, Image
 
@@ -89,7 +87,7 @@ class PostDetailView(generic.DetailView):
         return context
 
 
-class ImageFileRedirectView(RedirectView):
+class ImageFileRedirectView(generic.RedirectView):
     model = Image
     permanent = True
     pattern_name = 'image-file'
