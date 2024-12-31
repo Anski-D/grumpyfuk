@@ -106,3 +106,11 @@ class Image(models.Model):
     def delete(self, *args, **kwargs):
         Path(self.image.path).unlink()
         super().delete(*args, **kwargs)
+
+
+class InternalLink(models.Model):
+    post = models.ForeignKey('Post', related_name='links', on_delete=models.CASCADE)
+    destination = models.ForeignKey('Post', on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return str(self.pk)

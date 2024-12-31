@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db.models import Count
 
-from .models import Post, Author, Category, Tag, Image
+from .models import Post, Author, Category, Tag, Image, InternalLink
 
 
 class CommonAdmin(admin.ModelAdmin):
@@ -27,11 +27,17 @@ class ImageInline(admin.TabularInline):
     extra = 0
 
 
+class InternalLinksInline(admin.TabularInline):
+    model = InternalLink
+    fk_name = 'post'
+    extra = 0
+
+
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'publish_date')
     prepopulated_fields = {'slug': ('title',)}
-    inlines = [ImageInline]
+    inlines = [InternalLinksInline, ImageInline]
     exclude = ('images',)
 
 
