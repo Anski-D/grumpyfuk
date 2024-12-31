@@ -5,6 +5,11 @@
     | {{ post.title }}
 {% endblock window_title %}
 
+{% block head_description %}
+    <meta name="description"
+          content="{{ post.summary }}" />
+{% endblock head_description %}
+
 {% block page_content %}
     <article id="post">
         <hgroup>
