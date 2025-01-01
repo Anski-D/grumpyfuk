@@ -108,9 +108,41 @@ class Image(models.Model):
         super().delete(*args, **kwargs)
 
 
+class DestinationType(models.TextChoices):
+    CATEGORY = 'C', 'Category'
+    POST = 'P', 'Post'
+    TAG = 'T', 'Tag'
+
+
 class InternalLink(models.Model):
-    post = models.ForeignKey('Post', related_name='links', on_delete=models.CASCADE)
-    destination = models.ForeignKey('Post', on_delete=models.SET_NULL, null=True)
+    post = models.ForeignKey(Post, related_name='links', on_delete=models.CASCADE)
+
+    destination_type = models.CharField(
+        choices=DestinationType.choices,
+        max_length=1,
+        default=DestinationType.POST,
+    )
+    destination_category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
+    destination_post = models.ForeignKey(Post, on_delete=models.SET_NULL, null=True, blank=True)
+    destination_tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True, blank=True)
+
+    @property
+    def destination(self):
+        for destination in [self.destination_category, self.destination_post, self.destination_tag]:
+            if destination is not None:
+                return destination
 
     def __str__(self):
         return str(self.pk)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                check=(
+                        models.Q(destination_type=DestinationType.CATEGORY, destination_post__isnull=True, destination_tag__isnull=True) |
+                        models.Q(destination_type=DestinationType.POST, destination_category__isnull=True, destination_tag__isnull=True) |
+                        models.Q(destination_type=DestinationType.TAG, destination_category__isnull=True, destination_post__isnull=True)
+                ),
+                name='%(app_label)s_%(class)s_only_one_destination',
+            )
+        ]
