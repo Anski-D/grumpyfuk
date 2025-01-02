@@ -31,6 +31,7 @@ class InternalLinksInline(admin.TabularInline):
     model = InternalLink
     fk_name = 'post'
     extra = 0
+    readonly_fields = ('destination_type',)
 
 
 @admin.register(Post)

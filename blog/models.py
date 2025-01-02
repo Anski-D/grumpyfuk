@@ -146,3 +146,9 @@ class InternalLink(models.Model):
                 name='%(app_label)s_%(class)s_only_one_destination',
             )
         ]
+
+    def save(self, *args, **kwargs):
+        destination_types = {key.casefold(): value for value, key in DestinationType.choices}
+        self.destination_type = destination_types[self.destination._meta.verbose_name]
+
+        super().save(**kwargs)
