@@ -59,6 +59,10 @@ class Author(models.Model):
     def __str__(self):
         return self.display_name
 
+    @property
+    def name(self):
+        return self.display_name
+
     def get_absolute_url(self):
         return reverse('blog:author-post-list', kwargs={'slug': self.slug})
 

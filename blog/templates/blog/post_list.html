@@ -1,11 +1,11 @@
 {% extends 'blog/base.html' %}
 
 {% block window_title %}
-    {% if list_title %} | {{ list_title }}{% endif %}
+ | {{ model_name }}: {{ object.name }}
 {% endblock window_title %}
 
 {% block page_title %}
-    <h2>{{ list_title }}</h2>
+    <h2>{{ model_name }}: {{ object.name }}</h2>
 {% endblock page_title %}
 
 {% block page_content %}

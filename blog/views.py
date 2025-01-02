@@ -11,17 +11,20 @@ def _get_sorted_published_posts():
     return Post.objects.filter(published=True).filter(publish_date__lte=timezone.now()).order_by('-publish_date')
 
 
+def _get_published_categories():
+    return Category.objects.filter(posts__published=True).filter(posts__publish_date__lte=timezone.now()).distinct()
+
+
 class IndexView(generic.ListView):
     template_name = 'blog/index.html'
     context_object_name = 'posts'
-    categories = Category.objects.filter(posts__published=True).filter(posts__publish_date__lte=timezone.now()).distinct()
 
     def get_queryset(self):
         return _get_sorted_published_posts()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = self.categories
+        context['categories'] = _get_published_categories()
         context['absolute_uri'] = self.request.build_absolute_uri()
 
         return context
@@ -29,11 +32,15 @@ class IndexView(generic.ListView):
 
 class PostListBySubsetView(ABC, IndexView):
     template_name = 'blog/post_list.html'
-    title = ''
+
+    @property
+    def model_name(self):
+        return self.model._meta.object_name
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['list_title'] = f'{self.title}: {self.model.objects.get(slug=self.kwargs["slug"])}'
+        context['model_name'] = self.model_name
+        context['object'] = self.model.objects.get(slug=self.kwargs["slug"])
 
         return context
 
@@ -43,7 +50,6 @@ class PostListBySubsetView(ABC, IndexView):
 
 class PostListByCategoryView(PostListBySubsetView):
     model = Category
-    title = 'Category'
 
     def get_queryset(self):
         return super().get_queryset().filter(categories=self._get_subset())
@@ -51,7 +57,6 @@ class PostListByCategoryView(PostListBySubsetView):
 
 class PostListByTagView(PostListBySubsetView):
     model = Tag
-    title = 'Tag'
 
     def get_queryset(self):
         return super().get_queryset().filter(tags=self._get_subset())
@@ -59,7 +64,6 @@ class PostListByTagView(PostListBySubsetView):
 
 class PostListByAuthorView(PostListBySubsetView):
     model = Author
-    title = 'Author'
 
     def get_queryset(self):
         return super().get_queryset().filter(author=self._get_subset())
@@ -67,7 +71,6 @@ class PostListByAuthorView(PostListBySubsetView):
 
 class PostDetailView(generic.DetailView):
     model = Post
-    categories = Category.objects.filter(posts__published=True).filter(posts__publish_date__lte=timezone.now()).distinct()
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
@@ -77,7 +80,7 @@ class PostDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = self.categories
+        context['categories'] = _get_published_categories()
         post = self.model.objects.get(slug=self.kwargs['slug'])
         if post.last_updated.date() > post.publish_date.date():
             context['last_updated'] = post.last_updated
