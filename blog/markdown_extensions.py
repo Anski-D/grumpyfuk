@@ -28,7 +28,7 @@ class ImageFieldImageInlineProcessor(ImageInlineProcessor):
             relative_url = reverse(f'{app}:{name}', args=[slug])
             src = relative_url
             if not settings.DEBUG:
-                src = f'/cdn-cgi/image/fit=scale-down,width=auto{src}'
+                src = f'/cdn-cgi/image/fit=scale-down,width=auto,format=avif{src}'
 
         return src, title, index, handled
 
