@@ -6,7 +6,7 @@ from markdown.inlinepatterns import LinkInlineProcessor, LINK_RE, ImageInlinePro
 from .models import InternalLink
 
 
-class CustomFieldLinkInlineProcessor(LinkInlineProcessor):
+class InternalLinkFieldLinkInlineProcessor(LinkInlineProcessor):
     def getLink(self, data, index):
         href, title, index, handled = super().getLink(data, index)
         href_parts = href.split(':')
@@ -33,7 +33,7 @@ class ImageFieldImageInlineProcessor(ImageInlineProcessor):
 class CustomSlugFieldExtensions(markdown.Extension):
     def extendMarkdown(self, md, *args, **kwargs):
         md.inlinePatterns.register(
-            CustomFieldLinkInlineProcessor(LINK_RE, md), 'link', 160
+            InternalLinkFieldLinkInlineProcessor(LINK_RE, md), 'link', 160
         )
         md.inlinePatterns.register(
             ImageFieldImageInlineProcessor(IMAGE_LINK_RE, md), 'image', 160
