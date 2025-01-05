@@ -47,7 +47,7 @@ class Post(models.Model):
         if not self.summary:
             self.summary = self.body[:self._summary_length]
 
-        super().save(**kwargs)
+        super().save(*args, **kwargs)
 
 
 class Author(models.Model):
@@ -155,7 +155,7 @@ class InternalLink(models.Model):
         destination_types = {key.casefold(): value for value, key in DestinationType.choices}
         self.destination_type = destination_types[self.destination._meta.verbose_name]
 
-        super().save(**kwargs)
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return self.destination.get_absolute_url()
