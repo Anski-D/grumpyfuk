@@ -9,12 +9,9 @@ from .models import InternalLink
 class CustomFieldLinkInlineProcessor(LinkInlineProcessor):
     def getLink(self, data, index):
         href, title, index, handled = super().getLink(data, index)
-        if any(href.startswith(start) for start in ['slug', 'pk']):
-            key, app, name, slug = href.split(':')
-            if key == 'pk':
-                slug = InternalLink.objects.get(pk=slug).destination.slug
-                
-            relative_url = reverse(f'{app}:{name}', args=[slug])
+        href_parts = href.split(':')
+        if href_parts[0] == 'internal-link':
+            relative_url = InternalLink.objects.get(pk=href_parts[1]).get_absolute_url()
             href = relative_url
 
         return href, title, index, handled

@@ -156,3 +156,6 @@ class InternalLink(models.Model):
         self.destination_type = destination_types[self.destination._meta.verbose_name]
 
         super().save(**kwargs)
+
+    def get_absolute_url(self):
+        return self.destination.get_absolute_url()
