@@ -25,6 +25,7 @@ class ImageAdmin(CommonAdmin):
 class ImageInline(admin.TabularInline):
     model = Post.images.through
     extra = 0
+    readonly_fields = ('image_id',)
 
 
 class InternalLinksInline(admin.TabularInline):

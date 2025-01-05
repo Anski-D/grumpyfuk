@@ -3,7 +3,7 @@ from django import template
 from django.template.defaultfilters import stringfilter
 from django.utils.safestring import mark_safe
 
-from blog.markdown_extensions import CustomSlugFieldExtensions
+from blog.markdown_extensions import LinkFieldExtensions
 
 register = template.Library()
 
@@ -15,7 +15,7 @@ def render_markdown(value):
         extensions=[
             'fenced_code',
             'attr_list',
-            CustomSlugFieldExtensions(),
+            LinkFieldExtensions(),
         ]
     )
 

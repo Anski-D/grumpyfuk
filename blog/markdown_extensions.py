@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.conf import settings
 from markdown.inlinepatterns import LinkInlineProcessor, LINK_RE, ImageInlineProcessor, IMAGE_LINK_RE
 
-from .models import InternalLink
+from .models import InternalLink, Image
 
 
 class InternalLinkFieldLinkInlineProcessor(LinkInlineProcessor):
@@ -20,9 +20,9 @@ class InternalLinkFieldLinkInlineProcessor(LinkInlineProcessor):
 class ImageFieldImageInlineProcessor(ImageInlineProcessor):
     def getLink(self, data, index):
         src, title, index, handled = super().getLink(data, index)
-        if src.startswith('slug'):
-            _, app, name, slug = src.split(':')
-            relative_url = reverse(f'{app}:{name}', args=[slug])
+        src_parts = src.split(':')
+        if src_parts[0] == 'image':
+            relative_url = Image.objects.get(pk=src_parts[1]).get_absolute_url()
             src = relative_url
             if not settings.DEBUG:
                 src = f'/cdn-cgi/image/fit=scale-down,width=auto,format=avif{src}'
@@ -30,7 +30,7 @@ class ImageFieldImageInlineProcessor(ImageInlineProcessor):
         return src, title, index, handled
 
 
-class CustomSlugFieldExtensions(markdown.Extension):
+class LinkFieldExtensions(markdown.Extension):
     def extendMarkdown(self, md, *args, **kwargs):
         md.inlinePatterns.register(
             InternalLinkFieldLinkInlineProcessor(LINK_RE, md), 'link', 160

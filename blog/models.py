@@ -105,7 +105,7 @@ class Image(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('blog:image-detail', kwargs={'slug': self.slug})
+        return self.image.url
 
     def delete(self, *args, **kwargs):
         Path(self.image.path).unlink()
