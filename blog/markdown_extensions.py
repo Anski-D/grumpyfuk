@@ -1,8 +1,7 @@
 import markdown
-from django.urls import reverse
-from django.conf import settings
 from markdown.inlinepatterns import LinkInlineProcessor, LINK_RE, ImageInlineProcessor, IMAGE_LINK_RE
 
+from django.conf import settings
 from .models import InternalLink, Image
 
 
