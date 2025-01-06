@@ -1,3 +1,4 @@
+import hashlib
 from pathlib import Path
 
 from django.db import models
@@ -8,10 +9,14 @@ from django.utils.text import slugify
 _SLUG_LENGTH = 64
 
 
-def _image_save_name(instance, filename):
+def _get_image_save_name(instance, filename):
     suffix = Path(filename).suffix
 
-    return f'images/{instance.slug}-{timezone.now().strftime("%Y%m%d%H%M%S")}{suffix}'
+    return f'images/{instance.slug}-{instance.upload_date.strftime("%Y%m%d%H%M%S")}{suffix}'
+
+
+def _get_image_hash(image):
+    return hashlib.sha1(image.file.read()).hexdigest()
 
 
 class Post(models.Model):
@@ -99,7 +104,9 @@ class Image(models.Model):
     title = models.CharField(max_length=100)
     alt_text = models.CharField(max_length=100)
     slug = models.SlugField(max_length=_SLUG_LENGTH, unique=True)
-    image = models.ImageField(upload_to=_image_save_name)
+    upload_date = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to=_get_image_save_name)
+    image_hash = models.CharField(max_length=40, default=_get_image_hash)
 
     def __str__(self):
         return self.title
@@ -110,6 +117,15 @@ class Image(models.Model):
     def delete(self, *args, **kwargs):
         Path(self.image.path).unlink()
         super().delete(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        image_name = self.image.name
+        image_path = self.image.path
+        if _get_image_save_name(self, self.image.name) != image_name:
+            self.image.name = _get_image_save_name(self, self.image.name)
+            Path(image_path).rename(self.image.path)
+
+        super().save(*args, **kwargs)
 
 
 class DestinationType(models.TextChoices):
