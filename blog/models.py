@@ -106,7 +106,8 @@ class Image(models.Model):
     slug = models.SlugField(max_length=_SLUG_LENGTH, unique=True)
     upload_date = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to=_get_image_save_name)
-    image_hash = models.CharField(max_length=40, default=_get_image_hash)
+    image_hash = models.CharField(max_length=40)
+    image_path = models.CharField(max_length=1000)
 
     def __str__(self):
         return self.title
@@ -119,11 +120,15 @@ class Image(models.Model):
         super().delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
-        image_name = self.image.name
-        image_path = self.image.path
-        if _get_image_save_name(self, self.image.name) != image_name:
+        if (image_hash := _get_image_hash(self.image)) != self.image_hash:
+            Path(self.image_path).unlink()
+            self.image_hash = image_hash
             self.image.name = _get_image_save_name(self, self.image.name)
-            Path(image_path).rename(self.image.path)
+        elif _get_image_save_name(self, self.image.name) != self.image.name:
+            self.image.name = _get_image_save_name(self, self.image.name)
+            Path(self.image_path).rename(self.image.path)
+
+        self.image_path = self.image.path
 
         super().save(*args, **kwargs)
 
