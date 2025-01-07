@@ -106,8 +106,8 @@ class Image(models.Model):
     slug = models.SlugField(max_length=_SLUG_LENGTH, unique=True)
     upload_date = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to=_get_image_save_name)
-    image_hash = models.CharField(max_length=40)
-    image_path = models.CharField(max_length=1000)
+    image_hash = models.CharField(max_length=40, editable=False)
+    image_path = models.CharField(max_length=1000, editable=False)
 
     def __str__(self):
         return self.title
