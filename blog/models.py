@@ -6,13 +6,15 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
 
+from django.conf import settings
+
 _SLUG_LENGTH = 64
 
 
 def _get_image_save_name(instance, filename):
     suffix = Path(filename).suffix
 
-    return f'images/{instance.slug}-{instance.upload_date.strftime("%Y%m%d%H%M%S")}{suffix}'
+    return f'images/{timezone.now().strftime("%Y%m%d%H%M%S")}-{instance.image_hash}{suffix}'
 
 
 def _get_image_hash(image):
@@ -104,7 +106,6 @@ class Image(models.Model):
     title = models.CharField(max_length=100)
     alt_text = models.CharField(max_length=100)
     slug = models.SlugField(max_length=_SLUG_LENGTH, unique=True)
-    upload_date = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to=_get_image_save_name)
     image_hash = models.CharField(max_length=40, editable=False)
     image_path = models.CharField(max_length=1000, editable=False)
@@ -121,14 +122,11 @@ class Image(models.Model):
 
     def save(self, *args, **kwargs):
         if (image_hash := _get_image_hash(self.image)) != self.image_hash:
-            Path(self.image_path).unlink()
+            if self.image_path:
+                Path(settings.MEDIA_ROOT, self.image_path).unlink()
             self.image_hash = image_hash
-            self.image.name = _get_image_save_name(self, self.image.name)
-        elif _get_image_save_name(self, self.image.name) != self.image.name:
-            self.image.name = _get_image_save_name(self, self.image.name)
-            Path(self.image_path).rename(self.image.path)
-
-        self.image_path = self.image.path
+            super().save(*args, **kwargs)
+            self.image_path = self.image.name
 
         super().save(*args, **kwargs)
 
