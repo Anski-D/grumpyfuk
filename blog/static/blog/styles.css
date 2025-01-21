@@ -86,6 +86,7 @@ main {
     display: flex;
     flex-wrap: wrap;
     gap: var(--previews-gap);
+    margin-top: 1em;
 }
 #post-previews article {
     --num-posts: 3;
@@ -112,11 +113,12 @@ main {
 #post {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    /*gap: 1em;*/
 }
 .post-part {
     background: var(--color-beige);
     padding: 0.25em 1rem;
+    margin-top: 1em;
 }
 article hgroup p, article footer p {
     font-size: 0.8em;
@@ -153,7 +155,8 @@ h1 {
 }
 h2 {
     font-size: 2rem;
-    margin: 0 0 1rem 0;
+    /*margin: 0 0 1rem 0;*/
+    margin: 0;
     background: var(--color-beige);
     padding: 0.5em 1rem;
 }

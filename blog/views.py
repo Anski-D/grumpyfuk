@@ -62,13 +62,6 @@ class PostListByTagView(PostListBySubsetView):
         return super().get_queryset().filter(tags=self._get_subset())
 
 
-class PostListByAuthorView(PostListBySubsetView):
-    model = Author
-
-    def get_queryset(self):
-        return super().get_queryset().filter(author=self._get_subset())
-
-
 class PostDetailView(generic.DetailView):
     model = Post
 
@@ -99,3 +92,13 @@ class ImageFileRedirectView(generic.RedirectView):
         image = get_object_or_404(self.model, slug=kwargs['slug'])
 
         return image.image.url
+
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = _get_published_categories()
+
+        return context

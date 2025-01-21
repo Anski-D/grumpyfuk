@@ -61,6 +61,7 @@ class Author(models.Model):
     first_name = models.CharField(max_length=36)
     last_name = models.CharField(max_length=36)
     display_name = models.CharField(max_length=36)
+    biography = models.TextField(blank=True)
     slug = models.SlugField(max_length=_SLUG_LENGTH, unique=True)
 
     def __str__(self):
@@ -71,7 +72,7 @@ class Author(models.Model):
         return self.display_name
 
     def get_absolute_url(self):
-        return reverse('blog:author-post-list', kwargs={'slug': self.slug})
+        return reverse('blog:author-detail', kwargs={'slug': self.slug})
 
 
 class Category(models.Model):
