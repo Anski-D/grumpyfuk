@@ -113,7 +113,6 @@ main {
 #post {
     display: flex;
     flex-direction: column;
-    /*gap: 1em;*/
 }
 .post-part {
     background: var(--color-beige);
@@ -155,7 +154,6 @@ h1 {
 }
 h2 {
     font-size: 2rem;
-    /*margin: 0 0 1rem 0;*/
     margin: 0;
     background: var(--color-beige);
     padding: 0.5em 1rem;
