@@ -25,8 +25,8 @@
         </div>
         <div id="post-list" class="post-part">
             <h3>Recent posts</h3>
-            {% for post in author.posts.all %}
-                <p><a href="{{ post.get_absolute_url }}">{{ post.publish_date | date:'d/m/Y' }}: {{ post.title }}</a></p>
+            {% for published_post in published_posts %}
+                <p><a href="{{ published_post.get_absolute_url }}">{{ published_post.publish_date | date:'d/m/Y' }}: {{ published_post.title }}</a></p>
             {% endfor %}
         </div>
     </article>

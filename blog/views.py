@@ -100,5 +100,6 @@ class AuthorDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = _get_published_categories()
+        context['published_posts'] = _get_sorted_published_posts().filter(author=self.object)
 
         return context
