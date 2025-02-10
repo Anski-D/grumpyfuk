@@ -124,7 +124,14 @@ class Image(models.Model):
     def save(self, *args, **kwargs):
         if (image_hash := _get_image_hash(self.image)) != self.image_hash:
             if self.image_path:
-                Path(settings.MEDIA_ROOT, self.image_path).unlink()
+                try:
+                    Path(settings.MEDIA_ROOT, self.image_path).unlink()
+                except FileNotFoundError as e:
+                    path_to_delete = list(Path(settings.MEDIA_ROOT).glob(f'**/*{self.image_hash}*'))
+                    if len(path_to_delete) != 1:
+                        raise e
+                    path_to_delete[0].unlink()
+
             self.image_hash = image_hash
             super().save(*args, **kwargs)
             self.image_path = self.image.name
