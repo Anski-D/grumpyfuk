@@ -152,6 +152,9 @@ if not DEBUG:
                 'secret_key': os.environ.get('DJANGO_R2_SECRET_KEY', ''),
             },
         },
+        'staticfiles': {
+            'BACKEND': "storages.backends.s3.S3Storage",
+        },
     }
 
 # Default primary key field type
