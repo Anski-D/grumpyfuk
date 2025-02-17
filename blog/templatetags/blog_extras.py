@@ -13,8 +13,7 @@ register = template.Library()
 def render_markdown(value):
     md = markdown.Markdown(
         extensions=[
-            'fenced_code',
-            'attr_list',
+            'extra',
             LinkFieldExtensions(),
         ]
     )
