@@ -140,8 +140,19 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Static file serving.
 # https://whitenoise.readthedocs.io/en/stable/django.html#add-compression-and-caching-support
 if not DEBUG:
-    STORAGES = storages.backends
-    STORAGES['staticfiles'] = {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'}
+    # STORAGES = storages.backends
+    # STORAGES['staticfiles'] = {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'}
+    STORAGES = {
+        'default': {
+            'BACKEND': "storages.backends.s3.S3Storage",
+            'OPTIONS': {
+                'bucket_name': 'django',
+                'endpoint_url': 'https://b8923cfdeb3b8618cfa4f92a9c82b1aa.r2.cloudflarestorage.com',
+                'access_key': os.environ.get('DJANGO_R2_ACCESS_KEY', ''),
+                'secret_key': os.environ.get('DJANGO_R2_SECRET_KEY', ''),
+            },
+        },
+    }
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
