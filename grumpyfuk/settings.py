@@ -144,7 +144,7 @@ if not DEBUG:
     # STORAGES['staticfiles'] = {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'}
     STORAGES = {
         'default': {
-            'BACKEND': "storages.backends.s3.S3Storage",
+            'BACKEND': 'storages.backends.s3.S3Storage',
             'OPTIONS': {
                 'bucket_name': 'django',
                 'endpoint_url': 'https://b8923cfdeb3b8618cfa4f92a9c82b1aa.r2.cloudflarestorage.com',
@@ -153,7 +153,13 @@ if not DEBUG:
             },
         },
         'staticfiles': {
-            'BACKEND': "storages.backends.s3.S3Storage",
+            'BACKEND': 'storages.backends.s3.S3Storage',
+            'OPTIONS': {
+                'bucket_name': 'django',
+                'endpoint_url': 'https://b8923cfdeb3b8618cfa4f92a9c82b1aa.r2.cloudflarestorage.com',
+                'access_key': os.environ.get('DJANGO_R2_ACCESS_KEY', ''),
+                'secret_key': os.environ.get('DJANGO_R2_SECRET_KEY', ''),
+            },
         },
     }
 
