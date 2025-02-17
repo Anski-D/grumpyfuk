@@ -3,3 +3,4 @@ markdown
 Pillow
 python-dotenv
 whitenoise[brotli]
+django-storages[s3]
