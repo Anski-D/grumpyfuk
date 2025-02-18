@@ -139,7 +139,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Static file serving.
 # https://whitenoise.readthedocs.io/en/stable/django.html#add-compression-and-caching-support
-if not DEBUG:
+WHITENOISE = os.environ.get('DJANGO_WHITENOISE', '') == 'True'
+if not DEBUG and WHITENOISE:
     STORAGES = storages.backends
     STORAGES['staticfiles'] = {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'}
 
