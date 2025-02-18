@@ -1,3 +1,5 @@
+import os
+
 import markdown
 from markdown.inlinepatterns import LinkInlineProcessor, LINK_RE, ImageInlineProcessor, IMAGE_LINK_RE
 
@@ -23,7 +25,7 @@ class ImageFieldImageInlineProcessor(ImageInlineProcessor):
         if src_parts[0] == 'image':
             relative_url = Image.objects.get(pk=src_parts[1]).get_absolute_url()
             src = relative_url
-            if not settings.DEBUG:
+            if not settings.DEBUG and settings.IMAGE_TRANSFORM:
                 src = f'/cdn-cgi/image/fit=scale-down,width=auto,format=avif{src}'
 
         return src, title, index, handled

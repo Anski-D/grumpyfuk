@@ -147,3 +147,6 @@ if not DEBUG:
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Use image transformations
+IMAGE_TRANSFORM = os.environ.get('DJANGO_IMAGE_TRANSFORM', '') == 'True'
