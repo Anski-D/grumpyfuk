@@ -8,8 +8,6 @@ botocore==1.36.21
     # via
     #   boto3
     #   s3transfer
-brotli==1.1.0
-    # via whitenoise
 django==5.1.5
     # via
     #   -r requirements.in
@@ -36,5 +34,3 @@ sqlparse==0.5.3
     # via django
 urllib3==2.3.0
     # via botocore
-whitenoise==6.8.2
-    # via -r requirements.in

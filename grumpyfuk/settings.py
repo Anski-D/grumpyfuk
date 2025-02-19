@@ -52,7 +52,6 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -139,7 +138,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Static file serving.
 # https://whitenoise.readthedocs.io/en/stable/django.html#add-compression-and-caching-support
-WHITENOISE = os.environ.get('DJANGO_WHITENOISE', '') == 'True'
 if not DEBUG:
     STORAGES = storages.backends
     STORAGES['staticfiles'] = {
