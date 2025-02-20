@@ -136,18 +136,30 @@ STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# Static file serving.
-# https://whitenoise.readthedocs.io/en/stable/django.html#add-compression-and-caching-support
+# Static and media file storage
 if not DEBUG:
-    STORAGES = storages.backends
-    STORAGES['staticfiles'] = {
-        'BACKEND': 'storages.backends.s3.S3Storage',
-        'OPTIONS': {
-            'bucket_name': 'static',
-            'endpoint_url': os.environ.get('DJANGO_R2_STATIC_ENDPOINT', ''),
-            'access_key': os.environ.get('DJANGO_R2_STATIC_ACCESS_KEY', ''),
-            'secret_key': os.environ.get('DJANGO_R2_STATIC_SECRET_KEY', ''),
-            'signature_version': 's3v4',
+    STORAGES = {
+        'default': {
+            'BACKEND': 'storages.backends.s3.S3Storage',
+            'OPTIONS': {
+                'bucket_name': 'media',
+                'endpoint_url': os.environ.get('DJANGO_R2_MEDIA_ENDPOINT', ''),
+                'access_key': os.environ.get('DJANGO_R2_MEDIA_ACCESS_KEY', ''),
+                'secret_key': os.environ.get('DJANGO_R2_MEDIA_SECRET_KEY', ''),
+                'signature_version': 's3v4',
+                'custom_domain': os.environ.get('DJANGO_R2_MEDIA_DOMAIN', ''),
+            },
+        },
+        'staticfiles': {
+            'BACKEND': 'storages.backends.s3.S3Storage',
+            'OPTIONS': {
+                'bucket_name': 'static',
+                'endpoint_url': os.environ.get('DJANGO_R2_STATIC_ENDPOINT', ''),
+                'access_key': os.environ.get('DJANGO_R2_STATIC_ACCESS_KEY', ''),
+                'secret_key': os.environ.get('DJANGO_R2_STATIC_SECRET_KEY', ''),
+                'signature_version': 's3v4',
+                'custom_domain': os.environ.get('DJANGO_R2_STATIC_DOMAIN', ''),
+            },
         },
     }
 
