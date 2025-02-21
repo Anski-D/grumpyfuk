@@ -118,7 +118,7 @@ class Image(models.Model):
         return reverse('blog:image-file', kwargs={'slug': self.slug})
 
     def delete(self, *args, **kwargs):
-        Path(self.image.path).unlink()
+        self.image.delete(save=False)
         super().delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
