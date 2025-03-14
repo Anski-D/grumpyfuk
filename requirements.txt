@@ -14,5 +14,7 @@ python-dotenv==1.0.1
     # via -r requirements.in
 sqlparse==0.5.3
     # via django
+typing-extensions==4.12.2
+    # via asgiref
 whitenoise==6.8.2
     # via -r requirements.in
