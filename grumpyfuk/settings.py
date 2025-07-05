@@ -52,6 +52,7 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -138,30 +139,55 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Static and media file storage
 if not DEBUG:
-    STORAGES = {
-        'default': {
-            'BACKEND': 'storages.backends.s3.S3Storage',
-            'OPTIONS': {
-                'bucket_name': 'media',
-                'endpoint_url': os.environ.get('DJANGO_R2_MEDIA_ENDPOINT', ''),
-                'access_key': os.environ.get('DJANGO_R2_MEDIA_ACCESS_KEY', ''),
-                'secret_key': os.environ.get('DJANGO_R2_MEDIA_SECRET_KEY', ''),
-                'signature_version': 's3v4',
-                'custom_domain': os.environ.get('DJANGO_R2_MEDIA_DOMAIN', ''),
-            },
-        },
-        'staticfiles': {
-            'BACKEND': 'storages.backends.s3.S3Storage',
-            'OPTIONS': {
-                'bucket_name': 'static',
-                'endpoint_url': os.environ.get('DJANGO_R2_STATIC_ENDPOINT', ''),
-                'access_key': os.environ.get('DJANGO_R2_STATIC_ACCESS_KEY', ''),
-                'secret_key': os.environ.get('DJANGO_R2_STATIC_SECRET_KEY', ''),
-                'signature_version': 's3v4',
-                'custom_domain': os.environ.get('DJANGO_R2_STATIC_DOMAIN', ''),
-            },
-        },
-    }
+    if os.environ.get('DJANGO_REMOTE_STORAGE', '') == 'True':
+        STORAGES = storages.backends
+        media_keys = {
+            media_key: os.environ.get(media_key, '')
+            for media_key
+            in [
+                'DJANGO_R2_MEDIA_ENDPOINT',
+                'DJANGO_R2_MEDIA_ACCESS_KEY',
+                'DJANGO_R2_MEDIA_SECRET_KEY',
+                'DJANGO_R2_MEDIA_DOMAIN',
+            ]
+        }
+        if all(media_keys.values()):
+            STORAGES['default'] = {
+                    'BACKEND': 'storages.backends.s3.S3Storage',
+                    'OPTIONS': {
+                        'bucket_name': 'media',
+                        'endpoint_url': media_keys['DJANGO_R2_MEDIA_ENDPOINT'],
+                        'access_key': media_keys['DJANGO_R2_MEDIA_ACCESS_KEY'],
+                        'secret_key': media_keys['DJANGO_R2_MEDIA_SECRET_KEY'],
+                        'signature_version': 's3v4',
+                        'custom_domain': media_keys['DJANGO_R2_MEDIA_DOMAIN'],
+                    },
+            }
+        static_keys = {
+            media_key: os.environ.get(media_key, '')
+            for media_key
+            in [
+                'DJANGO_R2_STATIC_ENDPOINT',
+                'DJANGO_R2_STATIC_ACCESS_KEY',
+                'DJANGO_R2_STATIC_SECRET_KEY',
+                'DJANGO_R2_STATIC_DOMAIN',
+            ]
+        }
+        if all(static_keys.values()):
+            STORAGES['staticfiles'] = {
+                'BACKEND': 'storages.backends.s3.S3Storage',
+                'OPTIONS': {
+                    'bucket_name': 'media',
+                    'endpoint_url': static_keys['DJANGO_R2_STATIC_ENDPOINT'],
+                    'access_key': static_keys['DJANGO_R2_STATIC_ACCESS_KEY'],
+                    'secret_key': static_keys['DJANGO_R2_STATIC_SECRET_KEY'],
+                    'signature_version': 's3v4',
+                    'custom_domain': static_keys['DJANGO_R2_STATIC_DOMAIN'],
+                },
+            }
+    elif os.environ.get('DJANGO_WHITENOISE', '') == 'True':
+        STORAGES = storages.backends
+        STORAGES['staticfiles'] = {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
