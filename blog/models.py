@@ -169,7 +169,7 @@ class InternalLink(models.Model):
     class Meta:
         constraints = [
             models.CheckConstraint(
-                check=(
+                condition=(
                         models.Q(destination_type=DestinationType.CATEGORY, destination_post__isnull=True, destination_tag__isnull=True) |
                         models.Q(destination_type=DestinationType.POST, destination_category__isnull=True, destination_tag__isnull=True) |
                         models.Q(destination_type=DestinationType.TAG, destination_category__isnull=True, destination_post__isnull=True)
