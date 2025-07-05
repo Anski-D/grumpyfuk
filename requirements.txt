@@ -8,6 +8,8 @@ botocore==1.39.3
     # via
     #   boto3
     #   s3transfer
+brotli==1.1.0
+    # via whitenoise
 django==5.2.4
     # via
     #   -r requirements.in
@@ -36,3 +38,5 @@ typing-extensions==4.14.1
     # via asgiref
 urllib3==2.5.0
     # via botocore
+whitenoise==6.9.0
+    # via -r requirements.in
