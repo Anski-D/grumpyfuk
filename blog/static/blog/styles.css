@@ -135,6 +135,12 @@ p#last-updated {
     padding-bottom: 0.5em;
     font-weight: bold;
 }
+#page-header, main {
+    border-radius: 0.5rem;
+}
+nav menu, #page-footer, #post-previews article, .post-part, h2 {
+    border-radius: 0.5rem;
+}
 
 /* HYPERLINKS */
 a {
