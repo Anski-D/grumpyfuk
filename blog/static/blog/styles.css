@@ -97,7 +97,8 @@ main {
     box-sizing: border-box;
 }
 #post-previews article:first-child {
-    width: calc(2*100%/var(--num-posts) - (var(--num-posts) - 1)/var(--num-posts)*var(--previews-gap)/2)
+    --first-span: 1.75;
+    width: calc(var(--first-span)*100%/var(--num-posts) - (var(--num-posts) - 1)/var(--num-posts)*var(--previews-gap)/var(--first-span))
 }
 #post-previews article:nth-child(2) {
     flex: 1 0 auto;
