@@ -136,7 +136,15 @@ p#last-updated {
     font-weight: bold;
 }
 #page-header, nav menu, main, #post-previews article, .post-part, #page-footer, h2 {
-    border-radius: 0.5rem;
+    border-radius: 0.8rem;
+}
+#page-header {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+#page-footer {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 /* HYPERLINKS */
