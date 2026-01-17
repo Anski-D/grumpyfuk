@@ -34,9 +34,15 @@ body {
     @media (min-width: calc(800px/0.75)) {
         width: 75%;
     }
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
-nav, main, #page-footer {
-    margin-top: 1em;
+#page-header, nav, main {
+    margin-bottom: 1em;
+}
+#page-footer {
+    margin-top: auto;
 }
 #page-header, #page-footer {
     background: var(--color-beige);
