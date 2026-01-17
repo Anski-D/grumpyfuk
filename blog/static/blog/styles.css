@@ -113,7 +113,7 @@ main {
     outline: 0.5em solid var(--color-sage);
 }
 @media (max-width: 800px) {
-    #post-previews article, #post-previews article:first-child {
+    #post-previews article {
         --num-posts: 1;
     }
 }
