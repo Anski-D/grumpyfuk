@@ -124,9 +124,9 @@ main {
 .post-part {
     background: var(--color-beige);
     padding: 0.25em 1rem;
-    margin-top: 1em;
+    margin-top: 1rem;
 }
-article hgroup p, article footer p {
+article hgroup, article footer {
     font-size: 0.8em;
 }
 article hgroup p, p#tags {
