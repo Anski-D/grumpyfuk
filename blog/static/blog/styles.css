@@ -149,7 +149,7 @@ p#last-updated {
     border-radius: 0 0 2rem 2rem;
 }
 nav menu {
-    border-radius: 0.5rem;
+    border-radius: 1rem;
 }
 main {
     border-radius: var(--main-padding);
