@@ -51,9 +51,9 @@ body {
 /* PAGE TITLE */
 h1 a {
     color: black;
-}
-h1 a:hover {
-    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
 }
 
 /* MAIN NAVIGATION MENU */
@@ -101,16 +101,16 @@ main {
     padding-left: 1em;
     padding-right: 1em;
     box-sizing: border-box;
-}
-#post-previews article:first-child {
-    --first-span: 1.75;
-    width: calc(var(--first-span)*100%/var(--num-posts) - (var(--num-posts) - 1)/var(--num-posts)*var(--previews-gap)/var(--first-span))
-}
-#post-previews article:nth-child(2) {
-    flex: 1 0 auto;
-}
-#post-previews article:hover {
-    outline: 0.5em solid var(--color-sage);
+    &:hover {
+        outline: 0.5em solid var(--color-sage);
+    }
+    &:first-child {
+        --first-span: 1.75;
+        width: calc(var(--first-span)*100%/var(--num-posts) - (var(--num-posts) - 1)/var(--num-posts)*var(--previews-gap)/var(--first-span))
+    }
+    &:nth-child(2) {
+        flex: 1 0 auto;
+    }
 }
 @media (max-width: 800px) {
     #post-previews article {
@@ -158,9 +158,9 @@ p#last-updated {
 a {
     text-decoration: none;
     color: var(--color-orange);
-}
-a:hover {
-    text-decoration: underline;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 /* HEADINGS */
