@@ -80,11 +80,12 @@ nav menu li a {
     padding-right: 2rem;
 }
 main {
+    --main-padding: 2rem;
     font-size: 1rem;
-    padding: 2rem;
+    padding: var(--main-padding);
     background: var(--color-peach);
     @media (max-width: 800px) {
-        padding: 1rem;
+        --main-padding: 1rem;
     }
 }
 #post-previews {
@@ -142,16 +143,22 @@ p#last-updated {
     padding-bottom: 0.5em;
     font-weight: bold;
 }
-#page-header, nav menu, main, #post-previews article, .post-part, #page-footer, h2 {
-    border-radius: 0.8rem;
-}
+
+/* BORDER RADII */
 #page-header {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-radius: 0 0 2rem 2rem;
+}
+nav menu {
+    border-radius: 0.5rem;
+}
+main {
+    border-radius: var(--main-padding);
+}
+#post-previews article, .post-part, h2 {
+    border-radius: 1rem;
 }
 #page-footer {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+    border-radius: 1rem 1rem 0 0;
 }
 
 /* HYPERLINKS */
