@@ -2,15 +2,15 @@
 #    uv pip compile requirements.in -o requirements.txt
 asgiref==3.11.0
     # via django
-boto3==1.42.28
+boto3==1.42.30
     # via django-storages
-botocore==1.42.28
+botocore==1.42.30
     # via
     #   boto3
     #   s3transfer
 brotli==1.2.0
     # via whitenoise
-django==5.2.10
+django==6.0.1
     # via
     #   -r requirements.in
     #   django-storages
@@ -34,8 +34,6 @@ six==1.17.0
     # via python-dateutil
 sqlparse==0.5.5
     # via django
-typing-extensions==4.15.0
-    # via asgiref
 urllib3==2.6.3
     # via botocore
 whitenoise==6.11.0
