@@ -130,11 +130,19 @@ main {
 article hgroup, article footer {
     font-size: 0.8em;
 }
-article hgroup p, p#tags {
+article hgroup p {
     font-weight: bold;
 }
 p#last-updated {
     font-style: italic;
+}
+ul#tags {
+    list-style: none;
+    font-weight: bold;
+    padding: 0;
+}
+ul#tags li {
+    display: inline;
 }
 #page-footer p {
     margin: 0;
