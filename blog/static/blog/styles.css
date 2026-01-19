@@ -136,12 +136,12 @@ article hgroup p {
 p#last-updated {
     font-style: italic;
 }
-ul#tags {
+ul#tags, ul#categories {
     list-style: none;
     font-weight: bold;
     padding: 0;
 }
-ul#tags li {
+ul#tags li, ul#categories li {
     display: inline;
 }
 #page-footer p {
