@@ -17,7 +17,7 @@
                     <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
                     <p>Published {{ post.publish_date | date:'l jS F Y' }} by <a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></p>
                 </hgroup>
-                <p>{{ post.summary | slice:200 }}...<a href="{{ post.get_absolute_url }}">[read more]</a></p>
+                <p>{% if forloop.first %}{{ post.summary | slice:500 }}{% else %}{{ post.summary | slice:200 }}{% endif %}...<a href="{{ post.get_absolute_url }}">[read more]</a>
             </article>
         {% endfor %}
         </div>
