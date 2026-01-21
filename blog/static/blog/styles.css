@@ -108,8 +108,6 @@ main {
 }
 @media (max-width: 800px) {
     #post-previews {
-        /*display: flex;*/
-        /*flex-direction: column;*/
         grid-template-columns: 1fr;
     }
     #post-previews article:first-child {
