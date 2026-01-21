@@ -92,23 +92,28 @@ main {
     margin-top: 1em;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+    grid-auto-rows: 1fr;
     gap: 1em;
 }
 #post-previews article {
     background: var(--color-beige);
     padding-left: 1em;
     padding-right: 1em;
-    &:hover {
-        outline: 0.5em solid var(--color-sage);
-    }
     &:first-child {
         grid-column: 1 / span 2;
+    }
+    &:hover {
+        outline: 0.5em solid var(--color-sage);
     }
 }
 @media (max-width: 800px) {
     #post-previews {
-        display: flex;
-        flex-direction: column;
+        /*display: flex;*/
+        /*flex-direction: column;*/
+        grid-template-columns: 1fr;
+    }
+    #post-previews article:first-child {
+        grid-column: span 1;
     }
 }
 .post-part {
