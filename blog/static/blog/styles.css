@@ -8,15 +8,14 @@ https://colorhunt.co/palette/a5b68decdfccfcfaeeda8359
     --color-peach: #ecdfcc;
     --color-beige: #fcfaee;
     --color-orange: #da8359;
-    --width-small: 800px;
 }
 
 /* TOP LEVEL */
 html {
-    font-size: 1.2em;
+    font-size: 1em;
     font-family: Helvetica, sans-serif;
-    @media (max-width: 1067px) {
-        font-size: 1em;
+    @media (min-width: calc(800px/0.75)) {
+        font-size: 1.2em;
     }
 }
 body {
@@ -29,7 +28,7 @@ body {
 #container {
     margin: 0 auto;
     @media (min-width: 800px) {
-        width: var(--width-small);
+        width: 800px;
     }
     @media (min-width: calc(800px/0.75)) {
         width: 75%;
@@ -80,38 +79,35 @@ nav menu li a {
     padding-right: 2rem;
 }
 main {
-    --main-padding: 2rem;
-    font-size: 1rem;
+    --main-padding: 1rem;
     padding: var(--main-padding);
     background: var(--color-peach);
-    @media (max-width: 800px) {
-        --main-padding: 1rem;
+    @media (min-width: 800px) {
+        --main-padding: 2rem;
     }
 }
 #post-previews {
     margin-top: 1em;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
-    grid-auto-rows: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 1em;
 }
 #post-previews article {
     background: var(--color-beige);
     padding-left: 1em;
     padding-right: 1em;
-    &:first-child {
-        grid-column: 1 / span 2;
-    }
     &:hover {
         outline: 0.5em solid var(--color-sage);
     }
 }
-@media (max-width: 800px) {
+@media (min-width: 800px) {
     #post-previews {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+        grid-auto-rows: 1fr;
     }
     #post-previews article:first-child {
-        grid-column: span 1;
+        grid-column: span 2;
     }
 }
 .post-part {
