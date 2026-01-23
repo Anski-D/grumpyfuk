@@ -139,6 +139,7 @@ nav menu > li > a {
     display: block;
     background: var(--color-peach);
     text-align: center;
+    text-transform: uppercase;
     padding: 0.5em;
     color: black;
     &:hover {
