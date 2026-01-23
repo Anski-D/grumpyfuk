@@ -45,15 +45,14 @@ nav {
     height: min-content;
     background: var(--color-orange);
     grid-area: nav;
-    padding-top: 0.25em;
-    padding-bottom: 0.25em;
+    padding: 1em 2rem;
 }
 main {
     background: var(--color-peach);
     grid-area: main;
     padding: 1rem;
 }
-#page-header, nav, #page-footer {
+#page-header, #page-footer {
     padding-left: 2rem;
     padding-right: 2rem;
 }
@@ -83,8 +82,7 @@ main {
         align-items: start;
     }
     nav {
-        padding-top: 1em;
-        padding-bottom: 1em;
+        padding: 1em;
     }
 }
 
@@ -94,6 +92,9 @@ main {
 }
 nav {
     border-radius: 1rem;
+}
+nav menu > li > a {
+    border-radius: 0.5rem;
 }
 main {
     border-radius: 1rem;
@@ -131,13 +132,19 @@ nav menu {
     padding: 0;
     display: flex;
     flex-direction: row;
-    & > li {
-        line-height: 2em;
-        border: 2px solid black;
-    }
+    flex-wrap: wrap;
+    gap: 0.5em;
 }
-nav menu li a {
+nav menu > li > a {
+    display: block;
+    background: var(--color-peach);
+    text-align: center;
+    padding: 0.5em;
     color: black;
+    &:hover {
+        text-decoration: none;
+        outline: 0.25em solid var(--color-beige);
+    }
 }
 @media (min-width: calc(800px/0.75)) {
     nav menu {
@@ -151,11 +158,6 @@ nav menu li a {
     flex-direction: column;
     gap: 1em;
     margin-top: 1em;
-    @media (min-width: 800px) {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
-        grid-auto-rows: 1fr;
-    }
 }
 #post-previews > article {
     background: var(--color-beige);
@@ -163,6 +165,16 @@ nav menu li a {
     padding-left: 1em;
     &:hover {
         outline: 0.5em solid var(--color-sage);
+    }
+}
+@media (min-width: 800px) {
+    #post-previews {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+        grid-auto-rows: 1fr;
+    }
+    #post-previews > article:first-child {
+        grid-column: span 2;
     }
 }
 
@@ -241,7 +253,6 @@ h4 {
 code {
     background: black;
     color: var(--color-beige);
-    font-size: 0.8em;
 }
 pre code {
     width: 100%;
