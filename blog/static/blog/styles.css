@@ -45,7 +45,7 @@ nav {
     height: min-content;
     background: var(--color-orange);
     grid-area: nav;
-    padding: 1em;
+    padding: 0.5em;
 }
 main {
     background: var(--color-peach);
