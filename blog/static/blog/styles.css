@@ -177,7 +177,8 @@ nav menu > li > a {
         flex-direction: column;
     }
     nav menu > li:not(:first-child) > a {
-        border: none;
+        border-left: none;
+        border-top: 2px solid black;
     }
     nav menu > li > a {
         text-align: center;
