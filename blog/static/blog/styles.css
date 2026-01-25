@@ -45,7 +45,7 @@ nav {
     height: min-content;
     background: var(--color-orange);
     grid-area: nav;
-    padding: 1em 2rem;
+    padding: 1em;
 }
 main {
     background: var(--color-peach);
@@ -93,20 +93,38 @@ main {
 nav {
     border-radius: 1rem;
 }
-nav menu > li > a {
-    border-radius: 0.5rem;
+nav menu > li {
+    &:first-child > a {
+        border-radius: 0.5em 0 0 0.5em;
+    }
+    &:last-child > a {
+        border-radius: 0 0.5em 0.5em 0;
+    }
 }
 main {
     border-radius: 1rem;
-    @media (min-width: 800px) {
-        border-radius: 2rem;
-    }
+
 }
 #post-previews > article, .post-part, h2 {
     border-radius: 1rem;
 }
 #page-footer {
     border-radius: 1rem 1rem 0 0;
+}
+@media (min-width: 800px) {
+    main {
+        border-radius: 2rem;
+    }
+}
+@media (min-width: calc(800px/0.75)) {
+    nav menu > li {
+        &:first-child > a {
+            border-radius: 0.5em 0.5em 0 0;
+        }
+        &:last-child > a {
+            border-radius: 0 0 0.5em 0.5em;
+        }
+    }
 }
 
 /* PAGE TITLE */
@@ -133,23 +151,33 @@ nav menu {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 0.5em;
+    justify-content: center;
+}
+nav menu > li {
+    display: contents;
+    &:not(:first-child) > a {
+        border-left: 2px solid black;
+    }
 }
 nav menu > li > a {
-    display: block;
-    background: var(--color-peach);
-    text-align: center;
-    text-transform: uppercase;
-    padding: 0.5em;
     color: black;
+    padding: 0.5em;
+    text-transform: uppercase;
     &:hover {
         text-decoration: none;
-        outline: 0.25em solid var(--color-beige);
+        background: var(--color-beige);
     }
 }
 @media (min-width: calc(800px/0.75)) {
     nav menu {
         flex-direction: column;
+    }
+    nav menu > li:not(:first-child) > a {
+        border: none;
+    }
+    nav menu > li > a {
+        text-align: center;
+        border: none;
     }
 }
 
