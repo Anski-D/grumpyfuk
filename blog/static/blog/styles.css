@@ -130,6 +130,7 @@ main {
 /* PAGE TITLE */
 h1 {
     font-size: 4em;
+    text-align: center;
     margin: 0;
     padding-top: 0.25em;
     padding-bottom: 0.25em;
@@ -139,6 +140,9 @@ h1 {
         &:hover {
             text-decoration: none;
         }
+    }
+    @media (min-width: calc(800px/0.75)) {
+        text-align: left;
     }
 }
 
@@ -206,6 +210,10 @@ nav menu > li > a {
         grid-column: span 2;
     }
 }
+#post-previews > article hgroup > p {
+    font-size: 0.8em;
+    font-weight: bold;
+}
 
 /* POST PAGE CONTENT */
 article#post {
@@ -217,13 +225,17 @@ article#post {
     background: var(--color-beige);
     padding: 0.25em 1rem;
 }
-article hgroup, article footer {
-    font-size: 0.8em;
+article#post hgroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1em
 }
-article hgroup {
-    font-weight: bold;
-    & > .post-part {
-        margin-top: 1rem;
+article {
+    & hgroup > .post-part, & footer {
+        font-size: 0.8em;
+    }
+    & hgroup > .post-part {
+        font-weight: bold;
     }
 }
 ul#categories, ul#tags {
