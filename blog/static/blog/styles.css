@@ -292,11 +292,9 @@ h4 {
 }
 
 /* CODE */
-code {
+pre > code {
     background: black;
     color: var(--color-beige);
-}
-pre code {
     width: 100%;
     display: inline-block;
     overflow: auto;
