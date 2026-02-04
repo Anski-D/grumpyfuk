@@ -52,3 +52,8 @@ urlpatterns += [
         name="django.contrib.sitemaps.views.sitemap",
     ),
 ]
+
+# Ads.txt handling
+urlpatterns += [
+    path('ads.txt', RedirectView.as_view(url='static/blog/ads.txt', permanent=True)),
+]
