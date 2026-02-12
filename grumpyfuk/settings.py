@@ -70,7 +70,6 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -127,15 +126,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-# The absolute path to the directory where collectstatic will collect static files for deployment.
+# The absolute path to the directory where collectstatic will collect static files for deployment
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # The URL to use when referring to static files (where they will be served from)
 STATIC_URL = 'static/'
 
 # Media files
-MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = 'media/'
 
 # Static and media file storage
 if not DEBUG:
@@ -188,11 +187,6 @@ if not DEBUG:
     elif os.environ.get('DJANGO_WHITENOISE', '') == 'True':
         STORAGES = storages.backends
         STORAGES['staticfiles'] = {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'}
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Use image transformations
 IMAGE_TRANSFORM = os.environ.get('DJANGO_IMAGE_TRANSFORM', '') == 'True'
