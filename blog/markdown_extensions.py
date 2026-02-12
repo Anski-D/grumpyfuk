@@ -1,9 +1,7 @@
-import os
-
 import markdown
 from markdown.inlinepatterns import LinkInlineProcessor, LINK_RE, ImageInlineProcessor, IMAGE_LINK_RE
-
 from django.conf import settings
+
 from .models import InternalLink, Image
 
 
