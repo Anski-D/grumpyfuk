@@ -68,7 +68,7 @@ main {
         padding: 2rem;
     }
 }
-@media (min-width: calc(1280px/0.75)) {
+@media (min-width: calc(1280px/0.8)) {
     #container {
         width: 100%;
         display: grid;
@@ -116,7 +116,7 @@ main {
         border-radius: 2rem;
     }
 }
-@media (min-width: calc(1280px/0.75)) {
+@media (min-width: calc(1280px/0.8)) {
     nav menu > li {
         &:first-child > a {
             border-radius: 0.5em 0.5em 0 0;
@@ -172,7 +172,7 @@ nav menu > li > a {
         background: var(--color-beige);
     }
 }
-@media (min-width: calc(1280px/0.75)) {
+@media (min-width: calc(1280px/0.8)) {
     nav menu {
         flex-direction: column;
     }
