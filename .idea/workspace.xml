@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e8cc7ae7-fc02-4836-a3da-b1e64b663454" name="Changes" comment="Nest CSS pseudo selections where applicable (e.g., :hover)">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/grumpyfuk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/grumpyfuk.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/static/blog/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/blog/static/blog/styles.css" afterDir="false" />
+    <list default="true" id="e8cc7ae7-fc02-4836-a3da-b1e64b663454" name="Changes" comment="Make the page nav an extendable block in base.html, but fill with the default behaviour required">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -38,22 +49,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Django Server.grumpyfuk.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "django.template.preview.state": "SHOW_EDITOR_AND_PREVIEW",
-    "git-widget-placeholder": "latest",
-    "last_opened_file_path": "/home/david/python_projects",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Django Server.grumpyfuk.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR_AND_PREVIEW&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/david/python_projects/grumpyfuk/blog/templates&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/blog/templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/grumpyfuk" />
+      <recent name="$PROJECT_DIR$/templates" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -83,15 +106,16 @@
         <env name="DJANGO_SETTINGS_MODULE" value="grumpyfuk.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="uv (grumpyfuk)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="RUN_TOOL" value="" />
+      <option name="RUN_TOOL" value="true" />
       <option name="launchJavascriptDebuger" value="false" />
       <option name="port" value="8000" />
       <option name="host" value="" />
-      <option name="additionalOptions" value="" />
+      <option name="additionalOptions" value="--insecure" />
       <option name="browserUrl" value="" />
       <option name="runTestServer" value="false" />
       <option name="runNoReload" value="false" />
@@ -103,8 +127,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.29346.308" />
-        <option value="bundled-python-sdk-ca5e2b39c7df-6e1f45a539f7-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.29346.308" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.30387.173" />
+        <option value="bundled-python-sdk-4762d8aabb82-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.30387.173" />
       </set>
     </attachedChunks>
   </component>
@@ -117,6 +141,26 @@
       <updated>1768657007912</updated>
       <workItem from="1768657009581" duration="5464000" />
       <workItem from="1768737438504" duration="1596000" />
+      <workItem from="1769460865376" duration="1382000" />
+      <workItem from="1769706913690" duration="1956000" />
+      <workItem from="1769715155611" duration="1101000" />
+      <workItem from="1769856851183" duration="820000" />
+      <workItem from="1769865232684" duration="17000" />
+      <workItem from="1769948569223" duration="3177000" />
+      <workItem from="1769978422379" duration="5000" />
+      <workItem from="1769978666109" duration="1507000" />
+      <workItem from="1770053379309" duration="4000" />
+      <workItem from="1770066953037" duration="1987000" />
+      <workItem from="1770235524830" duration="2038000" />
+      <workItem from="1770242138622" duration="12000" />
+      <workItem from="1770330457179" duration="24000" />
+      <workItem from="1770752898446" duration="3904000" />
+      <workItem from="1770832998816" duration="4518000" />
+      <workItem from="1770914512564" duration="1078000" />
+      <workItem from="1770921742511" duration="492000" />
+      <workItem from="1770926685218" duration="2771000" />
+      <workItem from="1771065441357" duration="1324000" />
+      <workItem from="1771067014743" duration="2445000" />
     </task>
     <task id="LOCAL-00001" summary="CSS improvements">
       <option name="closed" value="true" />
@@ -134,7 +178,127 @@
       <option name="project" value="LOCAL" />
       <updated>1768738638345</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Improve styling of main navigation links by making them a bit more button-like, but not fully">
+      <option name="closed" value="true" />
+      <created>1769340565493</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1769340565493</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Tweaks to CSS styles of post and list hgroups">
+      <option name="closed" value="true" />
+      <created>1769341646316</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1769341646316</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Tweaks to CSS styles of post and list hgroups">
+      <option name="closed" value="true" />
+      <created>1769341659263</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1769341659263</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Nav link border tweaks when on large screens">
+      <option name="closed" value="true" />
+      <created>1769341729058</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1769341729058</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Tweak main nav padding">
+      <option name="closed" value="true" />
+      <created>1769349361512</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1769349361512</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Tweak code formating styles so that only block code has a black background">
+      <option name="closed" value="true" />
+      <created>1769707033082</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1769707033082</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add handling of ads.txt file">
+      <option name="closed" value="true" />
+      <created>1770236302294</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1770236302294</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Upgrade package dependency versions">
+      <option name="closed" value="true" />
+      <created>1770236876791</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1770236876791</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Remove change in font size for different screen sizes">
+      <option name="closed" value="true" />
+      <created>1770755237836</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1770755237836</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Refresh CSS styles to make the design more responsive, particularly less wide on large screens">
+      <option name="closed" value="true" />
+      <created>1770834087896</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1770834087896</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Update to make consistent with `django` 6.0 defaults">
+      <option name="closed" value="true" />
+      <created>1770926905241</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1770926905241</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Remove redundant import">
+      <option name="closed" value="true" />
+      <created>1770926916122</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1770926916122</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fix error in CSS styles that meant that some pages didn't display at correct width when on large screens">
+      <option name="closed" value="true" />
+      <created>1771067045922</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1771067045922</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Tweak width at which nav menu switches from top to side">
+      <option name="closed" value="true" />
+      <created>1771073167972</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1771073167972</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Make the page nav an extendable block in base.html, but fill with the default behaviour required">
+      <option name="closed" value="true" />
+      <created>1771073373321</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1771073373321</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,6 +318,20 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="CSS improvements" />
     <MESSAGE value="Nest CSS pseudo selections where applicable (e.g., :hover)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nest CSS pseudo selections where applicable (e.g., :hover)" />
+    <MESSAGE value="Improve styling of main navigation links by making them a bit more button-like, but not fully" />
+    <MESSAGE value="Tweaks to CSS styles of post and list hgroups" />
+    <MESSAGE value="Nav link border tweaks when on large screens" />
+    <MESSAGE value="Tweak main nav padding" />
+    <MESSAGE value="Tweak code formating styles so that only block code has a black background" />
+    <MESSAGE value="Add handling of ads.txt file" />
+    <MESSAGE value="Upgrade package dependency versions" />
+    <MESSAGE value="Remove change in font size for different screen sizes" />
+    <MESSAGE value="Refresh CSS styles to make the design more responsive, particularly less wide on large screens" />
+    <MESSAGE value="Update to make consistent with `django` 6.0 defaults" />
+    <MESSAGE value="Remove redundant import" />
+    <MESSAGE value="Fix error in CSS styles that meant that some pages didn't display at correct width when on large screens" />
+    <MESSAGE value="Tweak width at which nav menu switches from top to side" />
+    <MESSAGE value="Make the page nav an extendable block in base.html, but fill with the default behaviour required" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make the page nav an extendable block in base.html, but fill with the default behaviour required" />
   </component>
 </project>
