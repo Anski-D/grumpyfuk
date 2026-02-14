@@ -72,7 +72,7 @@ main {
     #container {
         width: 100%;
         display: grid;
-        grid-template-columns: auto fit-content(1280px);
+        grid-template-columns: auto 1280px;
         grid-template-rows: min-content;
         grid-template-areas:
             ". header"
