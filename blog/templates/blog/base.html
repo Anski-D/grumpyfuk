@@ -6,11 +6,9 @@
      crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {% block head_description %}
-    <meta name="description"
+    {% block head_description %}<meta name="description"
           content="GrumpyF.uk is a blog covering topics such as gardening, fruit and veg growing, wildlife,
-          fermentation and brewing, as well as programming, web dev, and computing." />
-    {% endblock head_description %}
+          fermentation and brewing, as well as programming, web dev, and computing." />{% endblock head_description %}
     <meta name="google-adsense-account" content="ca-pub-2607634905938236">
     <title>GrumpyF.uk{% block window_title %}{% endblock window_title %}</title>
     <link rel="canonical" href="{{ absolute_uri }}" />
@@ -25,10 +23,8 @@
 
         {% block page_nav %}<nav>
             <menu>
-                <li><a href="{% url 'blog:index' %}">Home</a></li>
-                {% for category in categories %}
-                <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
-                {% endfor %}
+                <li><a href="{% url 'blog:index' %}">Home</a></li>{% for category in categories %}
+                <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>{% endfor %}
             </menu>
         </nav>{% endblock page_nav %}
 
@@ -37,8 +33,11 @@
             {% block page_content %}{% endblock page_content %}
         </main>
 
-        <footer id="page-footer"><p>Copyright &copy; GrumpyF.uk {% now 'Y' %}</p></footer>
+        <footer id="page-footer">
+            <p>Copyright &copy; GrumpyF.uk {% now 'Y' %}</p>
+        </footer>
     </div>
+
 <script id="dsq-count-scr" src="//grumpyfuk.disqus.com/count.js" async></script>
 <!-- Default Statcounter code for My blog https://www.grumpyf.uk -->
 <script type="text/javascript">

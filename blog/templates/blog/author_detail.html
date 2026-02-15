@@ -1,33 +1,34 @@
 {% extends 'blog/base.html' %}
 {% load blog_extras %}
 
-{% block window_title %}
-    | Author | {{ author.display_name }}
+{% block window_title %} | Author | {{ author.display_name }}
 {% endblock window_title %}
 
-{% block head_description %}
-    <meta name="description"
-          content="Information page for author: {{ author.display_name }}." />
-{% endblock head_description %}
+{% block head_description %}<meta name="description"
+          content="Information page for author: {{ author.display_name }}." />{% endblock head_description %}
 
-{% block page_content %}
-    <article id="post">
-        <hgroup>
-            <h2>Author: {{ author.display_name }}</h2>
-        </hgroup>
-        <div id="content" class="post-part">
-            <h3>First name</h3>
-            {{ author.first_name }}
-            <h3>Last name</h3>
-            {{ author.last_name }}
-            <h3>Biography</h3>
-            {{ author.biography | render_markdown }}
-        </div>
-        <div id="post-list" class="post-part">
-            <h3>Recent posts</h3>
-            {% for published_post in published_posts %}
-                <p><a href="{{ published_post.get_absolute_url }}">{{ published_post.publish_date | date:'d/m/Y' }}: {{ published_post.title }}</a></p>
-            {% endfor %}
-        </div>
-    </article>
+{% block page_content %}<article id="post">
+
+                <hgroup>
+                    <h2>Author: {{ author.display_name }}</h2>
+                </hgroup>
+
+                <div id="content" class="post-part">
+                    <h3>First name</h3>
+                    {{ author.first_name }}
+                    <h3>Last name</h3>
+                    {{ author.last_name }}
+                    <h3>Biography</h3>
+                    {{ author.biography | render_markdown }}
+                </div>
+
+                <div id="post-list" class="post-part">
+                
+                    <h3>Recent posts</h3>
+                    {% for published_post in published_posts %}
+                    <p><a href="{{ published_post.get_absolute_url }}">{{ published_post.publish_date | date:'d/m/Y' }}: {{ published_post.title }}</a></p>{% endfor %}
+                
+                </div>
+
+            </article>
 {% endblock page_content %}

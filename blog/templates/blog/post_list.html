@@ -1,25 +1,19 @@
 {% extends 'blog/base.html' %}
 
-{% block window_title %}
- | {{ model_name }}: {{ object.name }}
-{% endblock window_title %}
+{% block window_title %} | {{ model_name }}: {{ object.name }}{% endblock window_title %}
 
-{% block page_title %}
-    <h2>{{ model_name }}: {{ object.name }}</h2>
-{% endblock page_title %}
+{% block page_title %}<h2>{{ model_name }}: {{ object.name }}</h2>{% endblock page_title %}
 
-{% block page_content %}
-    {% block posts %}
-        <div id="post-previews">
-        {% for post in posts %}
-            <article>
-                <hgroup>
-                    <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
-                    <p>Published {{ post.publish_date | date:'l jS F Y' }} by <a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></p>
-                </hgroup>
-                <p>{% if forloop.first %}{{ post.summary | slice:500 }}{% else %}{{ post.summary | slice:200 }}{% endif %}...<a href="{{ post.get_absolute_url }}">[read more]</a></p>
-            </article>
-        {% endfor %}
-        </div>
-    {% endblock posts %}
-{% endblock page_content %}
+{% block page_content %}{% block posts %}
+            <div id="post-previews">
+                {% for post in posts %}
+                <article>
+                    <hgroup>
+                        <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                        <p>Published {{ post.publish_date | date:'l jS F Y' }} by <a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></p>
+                    </hgroup>
+                    <p>{% if forloop.first %}{{ post.summary | slice:500 }}{% else %}{{ post.summary | slice:200 }}{% endif %}...<a href="{{ post.get_absolute_url }}">[read more]</a></p>
+                </article>
+                {% endfor %}
+            </div>
+{% endblock posts %}{% endblock page_content %}
