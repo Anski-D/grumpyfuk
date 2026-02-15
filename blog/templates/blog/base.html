@@ -11,7 +11,7 @@
           fermentation and brewing, as well as programming, web dev, and computing." />{% endblock head_description %}
     <meta name="google-adsense-account" content="ca-pub-2607634905938236">
     <title>GrumpyF.uk{% block window_title %}{% endblock window_title %}</title>
-    <link rel="canonical" href="{{ absolute_uri }}" />
+    {% block head_canon_uri %}<link rel="canonical" href="{{ absolute_uri }}" />{% endblock head_canon_uri %}
     <link rel="icon" type="image/x-icon" href="{% static 'blog/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'blog/styles.css' %}" />
 </head>
