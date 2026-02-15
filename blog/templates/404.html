@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% load blog_extras %}
+
+{% block window_title %} | 404: page not found{% endblock window_title %}
+
+{% block head_description %}<meta name="description"
+          content="{{ post.summary }}" />{% endblock head_description %}
+
+{% block page_nav %}<!-- No main navigation -->{% endblock page_nav %}
+
+{% block page_content %}<article id="post">
+
+                <hgroup>
+                    <h2>404: page not found</h2>
+                </hgroup>
+
+                <div id="content" class="post-part">
+                    <p>Uh oh, how did you end up here?</p>
+                    <p><a href="{% url 'blog:index' %}">Let's get you back to the actual website content.</a></p>
+                </div>
+
+            </article>
+{% endblock page_content %}
