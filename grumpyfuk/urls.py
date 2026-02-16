@@ -31,8 +31,7 @@ urlpatterns = [
 
 # URLs from blog app
 urlpatterns += [
-    path('blog/', include('blog.urls')),
-    path('', RedirectView.as_view(url='blog/', permanent=True)),
+    path('', include('blog.urls')),
 ]
 
 # Media URLs
