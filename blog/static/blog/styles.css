@@ -205,7 +205,6 @@ nav menu > li > a {
     #post-previews {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
-        grid-auto-rows: 1fr;
     }
     #post-previews > article:first-child {
         grid-column: span 2;
