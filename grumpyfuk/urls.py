@@ -1,4 +1,4 @@
-"""
+'''
 URL configuration for grumpyfuk project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -13,7 +13,7 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+'''
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
@@ -45,14 +45,14 @@ info_dict = {
 }
 urlpatterns += [
     path(
-        "sitemap.xml",
+        'sitemap.xml',
         sitemap,
-        {"sitemaps": {"blog": GenericSitemap(info_dict)}},
-        name="django.contrib.sitemaps.views.sitemap",
+        {'sitemaps': {'blog': GenericSitemap(info_dict)}},
+        name='django.contrib.sitemaps.views.sitemap',
     ),
 ]
 
 # Ads.txt handling
 urlpatterns += [
-    path('ads.txt', RedirectView.as_view(url='static/blog/ads.txt', permanent=True)),
+    path('ads.txt', RedirectView.as_view(url='static/ads.txt', permanent=True)),
 ]
