@@ -45,10 +45,10 @@ info_dict = {
 }
 urlpatterns += [
     path(
-        "sitemap.xml",
+        'sitemap.xml',
         sitemap,
-        {"sitemaps": {"blog": GenericSitemap(info_dict)}},
-        name="django.contrib.sitemaps.views.sitemap",
+        {'sitemaps': {'blog': GenericSitemap(info_dict)}},
+        name='django.contrib.sitemaps.views.sitemap',
     ),
 ]
 
