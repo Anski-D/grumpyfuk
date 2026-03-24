@@ -42,15 +42,17 @@ body {
     margin-top: auto;
 }
 nav {
-    height: min-content;
+    height: auto;
     background: var(--color-orange);
     grid-area: nav;
     padding: 0.5em;
+    box-sizing: border-box;
 }
 main {
     background: var(--color-peach);
     grid-area: main;
     padding: 1rem;
+    box-sizing: border-box;
 }
 #page-header, #page-footer {
     padding-left: 2rem;
@@ -62,7 +64,11 @@ main {
 }
 @media (min-width: 1280px) {
     #container{
+        /*width: 1280px;*/
+    }
+    nav, main {
         width: 1280px;
+        margin: 0 auto;
     }
     main {
         padding: 2rem;
@@ -72,17 +78,18 @@ main {
     #container {
         width: 100%;
         display: grid;
-        grid-template-columns: auto 1280px;
+        grid-template-columns: auto max-content 1280px auto;
         grid-template-rows: min-content;
         grid-template-areas:
-            ". header"
-            "nav main"
-            ". footer";
-        justify-content: center;
+            "header header header header"
+            ". nav main ."
+            "footer footer footer footer";
+        /*justify-content: center;*/
         align-items: start;
     }
     nav {
         padding: 1em;
+        width: auto;
     }
 }
 
@@ -142,7 +149,7 @@ h1 {
         }
     }
     @media (min-width: 1280px) {
-        text-align: left;
+        /*text-align: left;*/
     }
 }
 
