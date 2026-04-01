@@ -63,9 +63,6 @@ main {
     padding-bottom: 0.5em;
 }
 @media (min-width: 1280px) {
-    #container{
-        /*width: 1280px;*/
-    }
     nav, main {
         width: 1280px;
         margin: 0 auto;
@@ -84,7 +81,6 @@ main {
             "header header header header"
             ". nav main ."
             "footer footer footer footer";
-        /*justify-content: center;*/
         align-items: start;
     }
     nav {
@@ -147,9 +143,6 @@ h1 {
         &:hover {
             text-decoration: none;
         }
-    }
-    @media (min-width: 1280px) {
-        /*text-align: left;*/
     }
 }
 
