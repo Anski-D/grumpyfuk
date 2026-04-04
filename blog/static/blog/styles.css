@@ -164,8 +164,10 @@ nav menu > li {
     }
 }
 nav menu > li > a {
+    --button-padding: 0.5em;
     color: black;
-    padding: 0.5em;
+    padding: var(--button-padding);
+    padding-top: calc(var(--button-padding) + 0.5ex);
     text-transform: uppercase;
     &:hover {
         text-decoration: none;
