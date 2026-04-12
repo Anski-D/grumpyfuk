@@ -273,7 +273,7 @@ h2 {
     font-size: 2rem;
     background: var(--color-beige);
     margin: 0;
-    padding: 0.5em 1rem;
+    padding: calc(0.5em + 0.5ex) 1rem 0.5em 1rem;
 }
 h3 {
     font-size: 1.5rem;
