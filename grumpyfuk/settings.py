@@ -73,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'blog.context_processors.page_config',
             ],
         },
     },
@@ -190,3 +191,6 @@ if not DEBUG:
 
 # Use image transformations
 IMAGE_TRANSFORM = os.environ.get('DJANGO_IMAGE_TRANSFORM', '') == 'True'
+
+# Enable the ad script within template
+ADS_ON = not DEBUG and os.environ.get('ADS_ON', '') == 'True'
