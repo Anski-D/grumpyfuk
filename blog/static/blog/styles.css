@@ -164,10 +164,8 @@ nav menu > li {
     }
 }
 nav menu > li > a {
-    --button-padding: 0.5em;
     color: black;
-    padding: var(--button-padding);
-    padding-top: calc(var(--button-padding) + 0.5ex);
+    padding: 0.5em;
     text-transform: uppercase;
     &:hover {
         text-decoration: none;
@@ -273,7 +271,7 @@ h2 {
     font-size: 2rem;
     background: var(--color-beige);
     margin: 0;
-    padding: calc(0.5em + 0.5ex) 1rem 0.5em 1rem;
+    padding: 0.5em 1rem;
 }
 h3 {
     font-size: 1.5rem;
