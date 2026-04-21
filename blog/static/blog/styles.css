@@ -200,6 +200,9 @@ nav menu > li > a {
     &:hover {
         outline: 0.5em solid var(--color-sage);
     }
+    &> p {
+        line-height: 1.4em;
+    }
 }
 @media (min-width: 800px) {
     #post-previews {
@@ -245,6 +248,9 @@ ul#categories, ul#tags {
     & > li {
         display: inline;
     }
+}
+.post-part#content {
+    line-height: 1.4em;
 }
 p#last-updated {
     font-style: italic;
