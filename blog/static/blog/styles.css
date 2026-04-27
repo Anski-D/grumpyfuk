@@ -58,10 +58,6 @@ main {
     padding-left: 2rem;
     padding-right: 2rem;
 }
-#page-footer {
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-}
 @media (min-width: 1280px) {
     nav, main {
         width: 1280px;
@@ -133,10 +129,9 @@ main {
 /* PAGE TITLE */
 h1 {
     font-size: 4em;
+    line-height: 2em;
     text-align: center;
     margin: 0;
-    padding-top: 0.25em;
-    padding-bottom: 0.25em;
     & a {
         color: black;
         text-decoration: none;
@@ -165,7 +160,8 @@ nav menu > li {
 }
 nav menu > li > a {
     color: black;
-    padding: 0.5em;
+    line-height: 2em;
+    padding: 0 0.5em;
     text-transform: uppercase;
     &:hover {
         text-decoration: none;
@@ -258,6 +254,7 @@ p#last-updated {
 
 /* FOOTER */
 #page-footer > p {
+    line-height: 2em;
     font-weight: bold;
     text-align: center;
     margin: 0;
@@ -275,9 +272,10 @@ a {
 /* HEADINGS */
 h2 {
     font-size: 2rem;
+    line-height: 2em;
     background: var(--color-beige);
     margin: 0;
-    padding: 0.5em 1rem;
+    padding: 0 1rem;
 }
 h3 {
     font-size: 1.5rem;
