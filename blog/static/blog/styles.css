@@ -251,6 +251,25 @@ ul#categories, ul#tags {
 p#last-updated {
     font-style: italic;
 }
+footer.post-part {
+    padding: 0 1rem;
+}
+ul#tags {
+    line-height: 2em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.25em;
+}
+ul#tags > li {
+    display: contents;
+}
+ul#tags > li > a {
+    color: var(--color-beige);
+    background: var(--color-orange);
+    padding: 0 0.5em;
+    border-radius: 0.25em;
+}
 
 /* FOOTER */
 #page-footer > p {
