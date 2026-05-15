@@ -1,6 +1,0 @@
-django
-whitenoise[brotli]
-markdown
-Pillow
-python-dotenv
-django-storages[s3]
